@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #fafaf9;
-  --foreground: #1e1b4b;
+  --background: #fdf6f5;
+  --foreground: #1f1210;
 }
 
 html,
@@ -24,49 +24,44 @@ body {
   box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #f5f3ff;
-}
-::-webkit-scrollbar-thumb {
-  background: #c4b5fd;
-  border-radius: 999px;
-}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f5e6e4; }
+::-webkit-scrollbar-thumb { background: #d9a8a2; border-radius: 999px; }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center rounded-sm px-7 py-3.5 text-sm font-semibold uppercase tracking-widest transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
   }
   .btn-primary {
-    @apply btn bg-brand-600 text-white hover:bg-brand-700 shadow-md hover:shadow-lg active:scale-[0.98];
+    @apply btn bg-brand-600 text-white hover:bg-brand-700 active:scale-[0.98];
   }
   .btn-secondary {
-    @apply btn border border-brand-200 bg-white text-brand-700 hover:bg-brand-50 hover:border-brand-300 shadow-sm;
+    @apply btn border border-brand-300 bg-transparent text-brand-700 hover:bg-brand-100;
   }
   .card {
-    @apply rounded-2xl border border-brand-100 bg-white p-5 shadow-card;
+    @apply rounded-sm border border-brand-200 bg-white p-6;
   }
   .chip {
     @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold tracking-wide;
   }
   .field-input {
-    @apply w-full rounded-xl border border-brand-200 bg-white px-4 py-3 text-base text-brand-900 placeholder:text-brand-300 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200 transition;
+    @apply w-full border-0 border-b border-brand-200 bg-transparent px-0 py-2.5 text-base text-brand-900 placeholder:text-brand-300 focus:border-brand-500 focus:outline-none transition-colors;
   }
   .section-label {
-    @apply text-xs font-bold uppercase tracking-widest text-brand-400;
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-brand-400;
+  }
+  .display-heading {
+    @apply font-display text-4xl font-bold leading-tight text-brand-900 sm:text-5xl;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-violet-300 via-fuchsia-200 to-purple-300 bg-clip-text text-transparent;
+  .divider {
+    @apply my-1 flex items-center gap-4;
   }
-  .hero-surface {
-    background: linear-gradient(145deg, #12102e 0%, #1e1b4b 40%, #2d1b69 100%);
-  }
-  .card-hover {
-    @apply transition-shadow duration-200 hover:shadow-card-hover;
+  .divider::before,
+  .divider::after {
+    content: "";
+    @apply h-px flex-1 bg-brand-200;
   }
 }

@@ -1,27 +1,44 @@
 import Link from "next/link";
 import PrivacyBanner from "@/components/PrivacyBanner";
 
-const stats = [
-  { value: "7+", label: "Resource categories" },
-  { value: "100%", label: "Private & anonymous" },
-  { value: "< 5 min", label: "To find options" },
+const features = [
+  {
+    label: "Urgency-aware",
+    heading: "Help for tonight\nor next week",
+    body: "We surface options based on when you need them — emergency beds, same-day services, or longer-term planning.",
+  },
+  {
+    label: "Transportation-first",
+    heading: "Only what\nyou can reach",
+    body: "Filter by walking, transit, car, or no transportation. We never show you places you can't get to.",
+  },
+  {
+    label: "Fully private",
+    heading: "No account,\nno judgment",
+    body: "Your answers stay in your browser. Nothing is stored on a server. You choose exactly what to share.",
+  },
+  {
+    label: "Warm handoff",
+    heading: "Skip repeating\nyour story",
+    body: "A one-tap outreach summary lets workers advocate for you without asking you to start over.",
+  },
 ];
 
-const valueCards = [
+const steps = [
   {
     num: "01",
-    title: "Personalized matching",
-    body: "We rank resources by urgency, transportation, documents, pets, language, family needs, and accessibility — not just distance.",
+    title: "Answer a few questions",
+    body: "Tell us what you need, where you are, and what constraints matter — pets, ID, language, access.",
   },
   {
     num: "02",
-    title: "Clear action plans",
-    body: "Get a simple plan: who to call, what to bring, what to say, and a backup option if the first is full.",
+    title: "See ranked options",
+    body: "Resources are scored on a match algorithm that weighs dozens of factors, not just distance.",
   },
   {
     num: "03",
-    title: "Outreach-ready summaries",
-    body: "Generate a warm handoff so outreach workers can help without making people repeat their story.",
+    title: "Get a clear action plan",
+    body: "Who to call, what to bring, what to say — plus a backup if the first option is full.",
   },
 ];
 
@@ -29,98 +46,178 @@ export default function LandingPage() {
   return (
     <div className="-mx-4">
       {/* ── Hero ── */}
-      <section className="hero-surface relative overflow-hidden px-6 pb-24 pt-20 text-center">
-        {/* Decorative orbs */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-600/25 blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 h-60 w-60 rounded-full bg-violet-500/15 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 h-48 w-48 rounded-full bg-fuchsia-500/10 blur-3xl" />
-        </div>
-
-        <div className="relative mx-auto max-w-4xl space-y-8">
-          <span className="chip border border-purple-400/30 bg-purple-500/20 text-purple-200">
-            Housing Dignity · Santa Clara, CA
-          </span>
-
-          <h1 className="text-5xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Find the right <br />
-            <span className="text-gradient">next step, fast.</span>
-          </h1>
-
-          <p className="mx-auto max-w-xl text-lg leading-relaxed text-purple-100/75 sm:text-xl">
-            DignityLink matches people experiencing housing insecurity with
-            realistic nearby resources — ranked by what actually matters to
-            your situation.
-          </p>
-
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/intake"
-              className="btn w-full bg-white font-bold text-brand-800 shadow-xl hover:bg-brand-50 sm:w-auto"
-            >
-              Start Navigator →
-            </Link>
-            <Link
-              href="/login"
-              className="btn w-full border border-white/20 bg-white/10 font-semibold text-white backdrop-blur hover:bg-white/20 sm:w-auto"
-            >
-              Worker Login
-            </Link>
+      <section className="mx-auto max-w-5xl px-4 pb-20 pt-16">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          {/* Left — editorial text */}
+          <div className="space-y-8">
+            <div className="space-y-2">
+              <p className="section-label">Housing Dignity · Santa Clara, CA</p>
+              <h1 className="font-display text-5xl font-bold leading-[1.1] text-brand-900 sm:text-6xl">
+                Find the right<br />
+                <span className="font-display italic text-brand-500">
+                  next step.
+                </span>
+              </h1>
+            </div>
+            <p className="max-w-md text-base leading-relaxed text-brand-700">
+              DignityLink matches people experiencing housing insecurity with
+              realistic nearby resources — ranked by urgency, transportation,
+              language, family needs, and accessibility.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/intake" className="btn-primary">
+                Start Navigator
+              </Link>
+              <Link href="/login" className="btn-secondary">
+                Worker Login
+              </Link>
+            </div>
+            <PrivacyBanner variant="privacy" />
           </div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-10 border-t border-white/10 pt-8">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="text-3xl font-extrabold text-white">{s.value}</div>
-                <div className="mt-0.5 text-sm text-purple-200/60">{s.label}</div>
+          {/* Right — floating stat cards */}
+          <div className="relative hidden lg:flex lg:items-center lg:justify-center">
+            <div className="relative h-80 w-full">
+              {/* Card 1 */}
+              <div className="absolute left-0 top-4 w-52 rounded-sm border border-brand-200 bg-white p-5 shadow-float">
+                <p className="font-display text-3xl font-bold text-brand-900">100%</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-400">Private &amp; Anonymous</p>
+                <p className="mt-2 text-sm text-brand-700">No account required. Nothing stored on our servers.</p>
+              </div>
+              {/* Card 2 */}
+              <div className="absolute right-0 top-12 w-52 rounded-sm border border-brand-200 bg-brand-100 p-5 shadow-float">
+                <p className="font-display text-3xl font-bold text-brand-900">7+</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-400">Resource Categories</p>
+                <p className="mt-2 text-sm text-brand-700">Shelter, food, medical, ID help, and more — all ranked for you.</p>
+              </div>
+              {/* Card 3 */}
+              <div className="absolute bottom-0 left-12 w-52 rounded-sm border border-brand-200 bg-white p-5 shadow-float">
+                <p className="font-display text-3xl font-bold text-brand-900">&lt; 5 min</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-400">To Find Options</p>
+                <p className="mt-2 text-sm text-brand-700">A simple intake flow designed for real situations, not paperwork.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Thin divider ── */}
+      <div className="border-t border-brand-200" />
+
+      {/* ── Features ── */}
+      <section className="bg-white px-4 py-20">
+        <div className="mx-auto max-w-5xl space-y-14">
+          <div className="text-center">
+            <div className="divider">
+              <span className="section-label">What we match</span>
+            </div>
+            <h2 className="mt-4 font-display text-3xl font-bold text-brand-900 sm:text-4xl">
+              Matching Solutions That <em className="italic">Actually Help</em>
+            </h2>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map((f) => (
+              <div key={f.label} className="space-y-3 text-center">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-brand-200 bg-brand-50">
+                  <span className="section-label text-[10px]">{f.label.slice(0, 2).toUpperCase()}</span>
+                </div>
+                <p className="section-label">{f.label}</p>
+                <h3 className="font-display text-lg font-bold leading-snug text-brand-900 whitespace-pre-line">
+                  {f.heading}
+                </h3>
+                <p className="text-sm leading-relaxed text-brand-700">{f.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Body ── */}
-      <div className="mx-auto max-w-5xl space-y-12 px-4 pt-12">
-        <PrivacyBanner variant="privacy" />
+      {/* ── Thin divider ── */}
+      <div className="border-t border-brand-200" />
 
-        {/* Value cards */}
-        <section className="grid gap-5 sm:grid-cols-3">
-          {valueCards.map((c) => (
-            <div
-              key={c.title}
-              className="card card-hover group space-y-3 transition-all duration-200"
-            >
-              <span className="section-label">{c.num}</span>
-              <h2 className="text-lg font-bold text-brand-900">{c.title}</h2>
-              <p className="text-sm leading-relaxed text-slate-500">{c.body}</p>
+      {/* ── How it works ── */}
+      <section className="px-4 py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+            {/* Left — decorative blush panel */}
+            <div className="hidden rounded-sm bg-brand-100 p-12 lg:block">
+              <p className="font-display text-5xl font-bold leading-tight text-brand-900">
+                We're more than<br />
+                <em className="italic text-brand-500">a directory.</em>
+              </p>
+              <ul className="mt-8 space-y-4">
+                {[
+                  "We rank by what matters to your situation",
+                  "We factor in pets, ID, language, and safety",
+                  "We generate a plan, not just a list",
+                  "We support outreach workers, too",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-brand-700">
+                    <span className="mt-0.5 text-brand-400">◆</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </section>
 
-        {/* CTA band */}
-        <section className="relative overflow-hidden rounded-3xl bg-brand-600 px-8 py-10 text-center text-white">
-          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/5" />
-            <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-white/5" />
-          </div>
-          <div className="relative space-y-4">
-            <h2 className="text-2xl font-extrabold">
-              Ready to find options that fit?
-            </h2>
-            <p className="mx-auto max-w-lg text-brand-100/80">
-              No account required. You choose what to share. Call to confirm
-              before going.
-            </p>
-            <Link
-              href="/intake"
-              className="btn mt-2 inline-flex bg-white font-bold text-brand-700 shadow-lg hover:bg-brand-50"
-            >
-              Start Navigator →
-            </Link>
-          </div>
-        </section>
+            {/* Right — steps */}
+            <div className="space-y-10">
+              <div>
+                <div className="divider">
+                  <span className="section-label">How it works</span>
+                </div>
+                <h2 className="mt-4 font-display text-3xl font-bold text-brand-900 sm:text-4xl">
+                  Three steps to a{" "}
+                  <em className="italic text-brand-500">real plan</em>
+                </h2>
+              </div>
 
+              <div className="space-y-8">
+                {steps.map((s, i) => (
+                  <div key={s.num} className="flex gap-6">
+                    <div className="flex flex-col items-center">
+                      <span className="font-display text-xl font-bold text-brand-300">
+                        {s.num}
+                      </span>
+                      {i < steps.length - 1 && (
+                        <div className="mt-2 h-12 w-px bg-brand-200" />
+                      )}
+                    </div>
+                    <div className="pb-2">
+                      <h3 className="font-semibold text-brand-900">{s.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-brand-700">{s.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="/intake" className="btn-primary inline-flex">
+                Start Navigator
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA band ── */}
+      <section className="border-t border-brand-200 bg-brand-100 px-4 py-16 text-center">
+        <div className="mx-auto max-w-xl space-y-6">
+          <p className="section-label">Ready to find options?</p>
+          <h2 className="font-display text-3xl font-bold text-brand-900 sm:text-4xl">
+            Let's create a plan <em className="italic">together.</em>
+          </h2>
+          <p className="text-sm leading-relaxed text-brand-700">
+            No account required. You choose what to share. Call to confirm
+            before going.
+          </p>
+          <Link href="/intake" className="btn-primary inline-flex">
+            Start Navigator
+          </Link>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-5xl px-4 pt-8">
         <PrivacyBanner variant="demo" />
       </div>
     </div>

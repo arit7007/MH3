@@ -50,22 +50,23 @@ export default function PlanPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center gap-3 pt-16 text-brand-600">
-        <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-brand-300 border-t-brand-600" />
-        Preparing your plan…
+      <div className="flex items-center gap-3 pt-20 text-brand-600">
+        <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-brand-200 border-t-brand-500" />
+        <span className="text-sm italic text-brand-500">Preparing your plan…</span>
       </div>
     );
   }
 
   if (!intake || !plan || !top) {
     return (
-      <div className="mx-auto max-w-xl space-y-4 pt-16 text-center">
-        <p className="text-5xl">📋</p>
-        <h1 className="text-2xl font-bold text-brand-900">No plan yet</h1>
-        <p className="text-slate-500">
+      <div className="mx-auto max-w-xl space-y-4 pt-20 text-center">
+        <h1 className="font-display text-2xl font-bold text-brand-900">
+          No plan yet
+        </h1>
+        <p className="text-sm text-brand-700">
           Start the navigator to create an action plan.
         </p>
-        <Link href="/intake" className="btn-primary">
+        <Link href="/intake" className="btn-primary inline-flex">
           Start Navigator
         </Link>
       </div>
@@ -73,19 +74,23 @@ export default function PlanPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6 pt-8">
-      <div className="flex flex-wrap items-start justify-between gap-3">
+    <div className="mx-auto max-w-2xl space-y-8 pt-12">
+      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-brand-200 pb-6">
         <div>
           <p className="section-label">Action Plan</p>
-          <h1 className="text-3xl font-extrabold text-brand-900">
-            {intake.urgency === "Tonight" ? "Your plan for tonight" : "Your plan"}
+          <h1 className="font-display text-4xl font-bold text-brand-900">
+            {intake.urgency === "Tonight" ? (
+              <>Your plan for <em className="italic text-brand-500">tonight</em></>
+            ) : (
+              <>Your <em className="italic text-brand-500">plan</em></>
+            )}
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-brand-700">
             Best option:{" "}
-            <span className="font-semibold text-brand-700">{top.name}</span>
+            <span className="font-semibold text-brand-800">{top.name}</span>
           </p>
         </div>
-        <Link href="/results" className="btn-secondary text-sm">
+        <Link href="/results" className="btn-secondary py-2.5 text-xs self-end">
           ← Back to options
         </Link>
       </div>

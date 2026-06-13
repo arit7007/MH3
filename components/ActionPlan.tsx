@@ -7,27 +7,22 @@ function PlanSection({
   title,
   children,
   action,
-  accent = "brand",
+  tinted = false,
 }: {
   title: string;
   children: React.ReactNode;
   action?: React.ReactNode;
-  accent?: "brand" | "amber";
+  tinted?: boolean;
 }) {
   return (
-    <section className="relative overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-card">
-      <div
-        className={`absolute left-0 top-0 h-full w-1 rounded-l-2xl ${
-          accent === "amber" ? "bg-gold-400" : "bg-brand-500"
-        }`}
-      />
-      <div className="px-5 py-4 pl-6">
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="font-bold text-brand-900">{title}</h3>
-          {action}
-        </div>
-        <div className="mt-3">{children}</div>
+    <section
+      className={`rounded-sm border border-brand-200 ${tinted ? "bg-brand-50" : "bg-white"}`}
+    >
+      <div className="flex items-center justify-between border-b border-brand-200 px-5 py-3">
+        <p className="section-label text-[10px]">{title}</p>
+        {action}
       </div>
+      <div className="px-5 py-4">{children}</div>
     </section>
   );
 }
@@ -37,24 +32,24 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <span
-          className={`chip ${
+          className={`chip text-xs ${
             plan.source === "ai"
               ? "bg-brand-600 text-white"
-              : "bg-brand-100 text-brand-800"
+              : "bg-brand-100 text-brand-700"
           }`}
         >
           {plan.source === "ai" ? "✦ AI-generated plan" : "Template plan"}
         </span>
       </div>
 
-      <p className="text-lg font-semibold text-brand-900">{plan.summary}</p>
+      <p className="font-display text-lg font-bold italic text-brand-800">
+        {plan.summary}
+      </p>
 
       <PlanSection title="Next steps">
         <ol className="ml-4 list-decimal space-y-2 text-sm text-brand-800">
           {plan.nextSteps.map((s, i) => (
-            <li key={i} className="leading-relaxed">
-              {s}
-            </li>
+            <li key={i} className="leading-relaxed">{s}</li>
           ))}
         </ol>
       </PlanSection>
@@ -71,47 +66,40 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
         title="Message you can send"
         action={<CopyButton text={plan.messageScript} label="Copy" />}
       >
-        <p className="rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-900">
+        <p className="rounded-sm bg-brand-50 px-4 py-3 text-sm text-brand-900">
           {plan.messageScript}
         </p>
         {plan.spanishMessageScript && (
           <div className="mt-3 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-brand-500">
-                En español
-              </span>
-              <CopyButton
-                text={plan.spanishMessageScript}
-                label="Copiar"
-              />
+              <span className="section-label text-[10px]">En español</span>
+              <CopyButton text={plan.spanishMessageScript} label="Copiar" />
             </div>
-            <p className="rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-900">
+            <p className="rounded-sm bg-brand-50 px-4 py-3 text-sm text-brand-900">
               {plan.spanishMessageScript}
             </p>
           </div>
         )}
       </PlanSection>
 
-      <PlanSection title="Backup option" accent="amber">
-        <p className="text-sm leading-relaxed text-brand-800">
-          {plan.backupPlan}
-        </p>
+      <PlanSection title="Backup option" tinted>
+        <p className="text-sm leading-relaxed text-brand-800">{plan.backupPlan}</p>
       </PlanSection>
 
       <PlanSection
         title="Outreach worker summary"
-        action={
-          <CopyButton text={plan.outreachSummary} label="Copy warm handoff" />
-        }
+        action={<CopyButton text={plan.outreachSummary} label="Copy warm handoff" />}
       >
         <p className="text-sm leading-relaxed text-brand-800">
           {plan.outreachSummary}
         </p>
       </PlanSection>
 
-      <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-        ⚠️ Availability is not guaranteed. Please call or visit to confirm
-        before traveling.
+      <div className="flex items-start gap-3 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3">
+        <span className="text-sm">⚠️</span>
+        <p className="text-sm text-amber-900">
+          Availability is not guaranteed. Please call or visit to confirm before traveling.
+        </p>
       </div>
     </div>
   );

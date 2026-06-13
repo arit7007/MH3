@@ -36,13 +36,13 @@ export default function OutreachPage() {
   }
 
   return (
-    <div className="space-y-8 pt-8">
-      <div>
+    <div className="space-y-10 pt-12">
+      <div className="border-b border-brand-200 pb-6">
         <p className="section-label">Outreach</p>
-        <h1 className="text-3xl font-extrabold text-brand-900">
-          Outreach dashboard
+        <h1 className="font-display text-4xl font-bold text-brand-900">
+          Outreach <em className="italic text-brand-500">dashboard</em>
         </h1>
-        <p className="mt-1 text-slate-500">
+        <p className="mt-2 text-sm text-brand-700">
           Review cases, see recommended resources, and copy a warm handoff so
           people don't have to repeat their story.
         </p>
@@ -50,18 +50,19 @@ export default function OutreachPage() {
 
       <PrivacyBanner variant="demo" />
 
-      <section className="card space-y-4">
+      <section className="space-y-5 rounded-sm border border-brand-200 bg-white p-6">
         <div>
-          <h2 className="text-lg font-bold text-brand-900">
+          <p className="section-label text-[10px]">AI Intake Parser</p>
+          <h2 className="font-display text-xl font-bold text-brand-900">
             Parse an outreach note
           </h2>
-          <p className="mt-0.5 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-brand-700">
             Type a short note in plain language — DignityLink extracts a
             structured intake automatically.
           </p>
         </div>
         <textarea
-          className="field-input resize-none text-sm"
+          className="w-full resize-none rounded-sm border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-900 placeholder:text-brand-300 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-300 transition"
           rows={3}
           value={note}
           onChange={(e) => setNote(e.target.value)}
@@ -84,14 +85,14 @@ export default function OutreachPage() {
           <p className="text-sm text-amber-700">{parseError}</p>
         )}
         {parsed && (
-          <pre className="overflow-x-auto rounded-xl bg-brand-50 p-4 text-xs text-brand-800">
+          <pre className="overflow-x-auto rounded-sm bg-brand-50 p-4 text-xs text-brand-800">
             {JSON.stringify(parsed, null, 2)}
           </pre>
         )}
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-bold text-brand-900">Cases</h2>
+        <p className="section-label text-[10px]">Active cases</p>
         <div className="grid gap-4">
           {demoCases.map((c) => (
             <OutreachCaseCard key={c.id} demoCase={c} />
