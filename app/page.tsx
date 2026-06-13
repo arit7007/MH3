@@ -93,9 +93,6 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f) => (
               <div key={f.label} className="space-y-3 text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-brand-200 bg-brand-50">
-                  <span className="section-label text-[10px]">{f.label.slice(0, 2).toUpperCase()}</span>
-                </div>
                 <p className="section-label">{f.label}</p>
                 <h3 className="font-display text-lg font-bold leading-snug text-brand-900 whitespace-pre-line">
                   {f.heading}
