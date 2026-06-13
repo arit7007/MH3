@@ -69,6 +69,7 @@ const steps = [
   "Getting there",
   "Important needs",
   "Action plan",
+  "Request details",
 ];
 
 function OptionButton({
@@ -84,7 +85,7 @@ function OptionButton({
     <button
       type="button"
       onClick={onClick}
-      className={`relative rounded-sm border px-4 py-4 text-left transition-[background-color,border-color,box-shadow] duration-150 ease-smooth ${
+      className={`relative rounded-sm border px-4 py-4 text-left transition-all duration-150 ${
         active
           ? "border-brand-500 bg-brand-50 text-brand-900 ring-1 ring-brand-400"
           : "border-brand-200 bg-white text-brand-800 hover:border-brand-300 hover:bg-brand-50/60"
@@ -214,7 +215,7 @@ export default function IntakeForm() {
       {/* Step 1 – Location & urgency */}
       {step === 1 && (
         <section className="space-y-8">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <h2 className="font-display text-2xl font-bold text-brand-900">
               Where are you?
             </h2>
@@ -233,37 +234,6 @@ export default function IntakeForm() {
               }}
               placeholder="Santa Clara, CA"
             />
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <button
-                type="button"
-                className="text-sm font-semibold text-brand-600 hover:text-brand-800 underline decoration-dotted transition-colors"
-                onClick={useCurrentLocation}
-              >
-                Use my current location
-              </button>
-              {intake.useCurrentLocation && (
-                <button
-                  type="button"
-                  className="text-sm text-brand-400 hover:text-brand-600 underline decoration-dotted transition-colors"
-                  onClick={() =>
-                    setIntake((prev) => ({
-                      ...prev,
-                      useCurrentLocation: false,
-                      currentCoordinates: null,
-                      location: typedLocation,
-                    }))
-                  }
-                >
-                  Use typed address instead
-                </button>
-              )}
-            </div>
-            {locationStatus && (
-              <p className="text-sm text-brand-600">{locationStatus}</p>
-            )}
-            {locationError && (
-              <p className="text-sm text-amber-700">{locationError}</p>
-            )}
           </div>
           <div className="space-y-4">
             <h2 className="font-display text-2xl font-bold text-brand-900">
@@ -371,6 +341,62 @@ export default function IntakeForm() {
         </section>
       )}
 
+      {step === 5 && (
+        <section className="space-y-6">
+          <div>
+            <h2 className="font-display text-2xl font-bold text-brand-900">
+              Final details for this request
+            </h2>
+            <p className="mt-1 text-sm text-brand-700">
+              Add a name and choose whether to use your current location.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <label className="block text-sm font-semibold text-brand-900" htmlFor="request-name">
+              Name on the request
+            </label>
+            <input
+              id="request-name"
+              className="field-input"
+              value={intake.requestName ?? ""}
+              onChange={(e) => set("requestName", e.target.value)}
+              placeholder="Your name"
+              autoComplete="name"
+            />
+          </div>
+
+          <div className="space-y-3 rounded-sm border border-brand-200 bg-white p-4">
+            <div>
+              <p className="text-sm font-semibold text-brand-900">Location for this request</p>
+              <p className="mt-1 text-sm text-brand-700">{intake.location}</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <button type="button" className="btn-secondary py-2.5" onClick={useCurrentLocation}>
+                Use my current location
+              </button>
+              {intake.useCurrentLocation && (
+                <button
+                  type="button"
+                  className="btn-secondary py-2.5"
+                  onClick={() =>
+                    setIntake((prev) => ({
+                      ...prev,
+                      useCurrentLocation: false,
+                      currentCoordinates: null,
+                      location: typedLocation,
+                    }))
+                  }
+                >
+                  Keep typed location instead
+                </button>
+              )}
+            </div>
+            {locationStatus ? <p className="text-sm text-brand-600">{locationStatus}</p> : null}
+            {locationError ? <p className="text-sm text-amber-800">{locationError}</p> : null}
+          </div>
+        </section>
+      )}
 
       {/* Navigation */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-brand-200 pt-6">
