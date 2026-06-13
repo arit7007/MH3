@@ -166,9 +166,6 @@ export default function LandingPage() {
                 ))}
               </div>
 
-              <Link href="/intake" className="btn-primary inline-flex">
-                Start Navigator
-              </Link>
             </div>
           </div>
         </div>
@@ -177,7 +174,6 @@ export default function LandingPage() {
       {/* ── CTA band ── */}
       <section className="border-t border-brand-200 bg-brand-100 px-4 py-16 text-center">
         <div className="mx-auto max-w-xl space-y-6">
-          <p className="section-label">Ready to find options?</p>
           <h2 className="font-display text-3xl font-bold text-brand-900 sm:text-4xl">
             Let's create a plan <em className="italic">together.</em>
           </h2>
@@ -185,9 +181,6 @@ export default function LandingPage() {
             No account required. You choose what to share. Call to confirm
             before going.
           </p>
-          <Link href="/intake" className="btn-primary inline-flex">
-            Start Navigator
-          </Link>
         </div>
       </section>
 
