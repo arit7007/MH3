@@ -19,7 +19,7 @@ export default function AuthForm() {
   const [submitting, setSubmitting] = useState(false);
 
   const title = useMemo(
-    () => (mode === "login" ? "Log in to DignityLink" : "Create an outreach account"),
+    () => (mode === "login" ? "Log in to Harbor" : "Create an outreach account"),
     [mode]
   );
 
@@ -81,7 +81,7 @@ export default function AuthForm() {
     <div className="mx-auto max-w-md space-y-5">
       <div className="space-y-2 text-center">
         <h1 className="text-3xl font-extrabold text-brand-900">{title}</h1>
-        <p className="text-sm text-brand-700">
+        <p className="text-base text-brand-700">
           Worker tools are restricted to verified outreach staff and partner admins.
         </p>
       </div>
@@ -90,7 +90,7 @@ export default function AuthForm() {
         <div className="grid grid-cols-2 rounded-xl border border-brand-100 bg-brand-50 p-1">
           <button
             type="button"
-            className={`rounded-lg px-3 py-2 text-sm font-semibold ${
+            className={`rounded-lg px-3 py-2 text-base font-semibold ${
               mode === "login" ? "bg-white text-brand-800 shadow-sm" : "text-brand-600"
             }`}
             onClick={() => setMode("login")}
@@ -99,7 +99,7 @@ export default function AuthForm() {
           </button>
           <button
             type="button"
-            className={`rounded-lg px-3 py-2 text-sm font-semibold ${
+            className={`rounded-lg px-3 py-2 text-base font-semibold ${
               mode === "signup" ? "bg-white text-brand-800 shadow-sm" : "text-brand-600"
             }`}
             onClick={() => setMode("signup")}
@@ -110,7 +110,7 @@ export default function AuthForm() {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           {mode === "signup" && (
-            <label className="block space-y-1 text-sm font-medium text-brand-800">
+            <label className="block space-y-1 text-base font-medium text-brand-800">
               <span>Full name</span>
               <input
                 className="w-full rounded-xl border border-brand-200 px-3 py-2 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
@@ -122,7 +122,7 @@ export default function AuthForm() {
             </label>
           )}
 
-          <label className="block space-y-1 text-sm font-medium text-brand-800">
+          <label className="block space-y-1 text-base font-medium text-brand-800">
             <span>Email</span>
             <input
               className="w-full rounded-xl border border-brand-200 px-3 py-2 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
@@ -134,7 +134,7 @@ export default function AuthForm() {
             />
           </label>
 
-          <label className="block space-y-1 text-sm font-medium text-brand-800">
+          <label className="block space-y-1 text-base font-medium text-brand-800">
             <span>Password</span>
             <input
               className="w-full rounded-xl border border-brand-200 px-3 py-2 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
@@ -147,9 +147,9 @@ export default function AuthForm() {
             />
           </label>
 
-          {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+          {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-base text-red-700">{error}</p>}
           {message && (
-            <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+            <p className="rounded-lg bg-emerald-50 px-3 py-2 text-base text-emerald-800">
               {message}
             </p>
           )}

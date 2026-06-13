@@ -13,6 +13,9 @@ export type DemoCase = {
 export const mariaIntake: Intake = {
   need: "Shelter tonight",
   location: "Santa Clara, CA",
+  requestName: "Maria",
+  useCurrentLocation: false,
+  currentCoordinates: null,
   urgency: "Tonight",
   transportation: "Public transit",
   hasPet: true,
@@ -44,6 +47,9 @@ export const demoCases: DemoCase[] = [
     intake: {
       need: "ID/document help",
       location: "Santa Clara, CA",
+      requestName: "James",
+      useCurrentLocation: false,
+      currentCoordinates: null,
       urgency: "This week",
       transportation: "Public transit",
       hasPet: false,
@@ -65,6 +71,9 @@ export const demoCases: DemoCase[] = [
     intake: {
       need: "Shelter tonight",
       location: "Santa Clara, CA",
+      requestName: "Elena",
+      useCurrentLocation: false,
+      currentCoordinates: null,
       urgency: "This week",
       transportation: "Public transit",
       hasPet: false,

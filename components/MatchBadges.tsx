@@ -5,7 +5,7 @@ export function ReasonList({ reasons }: { reasons: string[] }) {
       <p className="mb-2 section-label text-[10px] text-brand-500">Why this matched</p>
       <ul className="space-y-1.5">
         {reasons.map((r) => (
-          <li key={r} className="flex items-start gap-2 text-sm text-brand-800">
+          <li key={r} className="flex items-start gap-2 text-base text-brand-800">
             <span aria-hidden className="mt-0.5 text-brand-400">◆</span>
             <span>{r}</span>
           </li>
@@ -22,7 +22,7 @@ export function WarningList({ warnings }: { warnings: string[] }) {
       <p className="mb-2 section-label text-[10px] text-amber-600">Possible concerns</p>
       <ul className="space-y-1.5">
         {warnings.map((w) => (
-          <li key={w} className="flex items-start gap-2 text-sm text-amber-800">
+          <li key={w} className="flex items-start gap-2 text-base text-amber-800">
             <span aria-hidden className="mt-0.5">!</span>
             <span>{w}</span>
           </li>

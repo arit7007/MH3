@@ -38,16 +38,16 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
               : "bg-brand-100 text-brand-700"
           }`}
         >
-          {plan.source === "ai" ? "✦ AI-generated plan" : "Template plan"}
+          {plan.source === "ai" ? "AI-generated plan" : "Template plan"}
         </span>
       </div>
 
-      <p className="font-display text-lg font-bold italic text-brand-800">
+      <p className="font-display text-xl font-bold italic text-brand-800">
         {plan.summary}
       </p>
 
       <PlanSection title="Next steps">
-        <ol className="ml-4 list-decimal space-y-2 text-sm text-brand-800">
+        <ol className="ml-4 list-decimal space-y-2 text-base text-brand-800">
           {plan.nextSteps.map((s, i) => (
             <li key={i} className="leading-relaxed">{s}</li>
           ))}
@@ -55,7 +55,7 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
       </PlanSection>
 
       <PlanSection title="What to bring">
-        <ul className="ml-4 list-disc space-y-1.5 text-sm text-brand-800">
+        <ul className="ml-4 list-disc space-y-1.5 text-base text-brand-800">
           {plan.whatToBring.map((s, i) => (
             <li key={i}>{s}</li>
           ))}
@@ -66,7 +66,7 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
         title="Message you can send"
         action={<CopyButton text={plan.messageScript} label="Copy" />}
       >
-        <p className="rounded-sm bg-brand-50 px-4 py-3 text-sm text-brand-900">
+        <p className="rounded-sm bg-brand-50 px-4 py-3 text-base text-brand-900">
           {plan.messageScript}
         </p>
         {plan.spanishMessageScript && (
@@ -75,7 +75,7 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
               <span className="section-label text-[10px]">En español</span>
               <CopyButton text={plan.spanishMessageScript} label="Copiar" />
             </div>
-            <p className="rounded-sm bg-brand-50 px-4 py-3 text-sm text-brand-900">
+            <p className="rounded-sm bg-brand-50 px-4 py-3 text-base text-brand-900">
               {plan.spanishMessageScript}
             </p>
           </div>
@@ -83,21 +83,21 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
       </PlanSection>
 
       <PlanSection title="Backup option" tinted>
-        <p className="text-sm leading-relaxed text-brand-800">{plan.backupPlan}</p>
+        <p className="text-base leading-relaxed text-brand-800">{plan.backupPlan}</p>
       </PlanSection>
 
       <PlanSection
         title="Outreach worker summary"
         action={<CopyButton text={plan.outreachSummary} label="Copy warm handoff" />}
       >
-        <p className="text-sm leading-relaxed text-brand-800">
+        <p className="text-base leading-relaxed text-brand-800">
           {plan.outreachSummary}
         </p>
       </PlanSection>
 
       <div className="flex items-start gap-3 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3">
-        <span className="text-sm">⚠️</span>
-        <p className="text-sm text-amber-900">
+        <span className="section-label mt-0.5 text-amber-700">Note</span>
+        <p className="text-base text-amber-900">
           Availability is not guaranteed. Please call or visit to confirm before traveling.
         </p>
       </div>

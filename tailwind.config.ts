@@ -22,8 +22,26 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans:    ["var(--font-sans)",    "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: [
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "\"Segoe UI\"",
+          "Roboto",
+          "\"Helvetica Neue\"",
+          "Arial",
+          "sans-serif",
+        ],
+        display: [
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "\"Segoe UI\"",
+          "Roboto",
+          "\"Helvetica Neue\"",
+          "Arial",
+          "sans-serif",
+        ],
       },
       boxShadow: {
         card: "0 1px 4px rgba(0,0,0,0.04), 0 4px 20px -2px rgba(0,0,0,0.06)",

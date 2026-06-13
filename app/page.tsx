@@ -46,12 +46,10 @@ export default function LandingPage() {
   return (
     <div className="-mx-4">
       {/* ── Hero ── */}
-      <section className="mx-auto max-w-5xl px-4 pb-20 pt-16">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          {/* Left — editorial text */}
-          <div className="space-y-8">
+      <section className="mx-auto flex min-h-[70vh] max-w-5xl items-center px-4 pb-20 pt-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="space-y-8 text-center">
             <div className="space-y-2">
-              <p className="section-label">Housing Dignity · Santa Clara, CA</p>
               <h1 className="font-display text-5xl font-bold leading-[1.1] text-brand-900 sm:text-6xl">
                 Find the right<br />
                 <span className="font-display italic text-brand-500">
@@ -59,44 +57,20 @@ export default function LandingPage() {
                 </span>
               </h1>
             </div>
-            <p className="max-w-md text-base leading-relaxed text-brand-700">
-              DignityLink matches people experiencing housing insecurity with
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-brand-700">
+              Harbor matches people experiencing housing insecurity with
               realistic nearby resources — ranked by urgency, transportation,
               language, family needs, and accessibility.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/intake" className="btn-primary">
+            <div className="flex justify-center">
+              <Link
+                href="/intake"
+                className="btn-primary min-w-[18rem] px-12 py-5 text-2xl font-bold sm:min-w-[22rem] sm:px-16 sm:py-6 sm:text-3xl"
+              >
                 Start Navigator
-              </Link>
-              <Link href="/login" className="btn-secondary">
-                Worker Login
               </Link>
             </div>
             <PrivacyBanner variant="privacy" />
-          </div>
-
-          {/* Right — floating stat cards */}
-          <div className="relative hidden lg:flex lg:items-center lg:justify-center">
-            <div className="relative h-80 w-full">
-              {/* Card 1 */}
-              <div className="absolute left-0 top-4 w-52 rounded-sm border border-brand-200 bg-white p-5 shadow-float">
-                <p className="font-display text-3xl font-bold text-brand-900">100%</p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-400">Private &amp; Anonymous</p>
-                <p className="mt-2 text-sm text-brand-700">No account required. Nothing stored on our servers.</p>
-              </div>
-              {/* Card 2 */}
-              <div className="absolute right-0 top-12 w-52 rounded-sm border border-brand-200 bg-brand-100 p-5 shadow-float">
-                <p className="font-display text-3xl font-bold text-brand-900">7+</p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-400">Resource Categories</p>
-                <p className="mt-2 text-sm text-brand-700">Shelter, food, medical, ID help, and more — all ranked for you.</p>
-              </div>
-              {/* Card 3 */}
-              <div className="absolute bottom-0 left-12 w-52 rounded-sm border border-brand-200 bg-white p-5 shadow-float">
-                <p className="font-display text-3xl font-bold text-brand-900">&lt; 5 min</p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-400">To Find Options</p>
-                <p className="mt-2 text-sm text-brand-700">A simple intake flow designed for real situations, not paperwork.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -126,7 +100,7 @@ export default function LandingPage() {
                 <h3 className="font-display text-lg font-bold leading-snug text-brand-900 whitespace-pre-line">
                   {f.heading}
                 </h3>
-                <p className="text-sm leading-relaxed text-brand-700">{f.body}</p>
+                <p className="text-base leading-relaxed text-brand-700">{f.body}</p>
               </div>
             ))}
           </div>
@@ -153,7 +127,7 @@ export default function LandingPage() {
                   "We generate a plan, not just a list",
                   "We support outreach workers, too",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-brand-700">
+                  <li key={item} className="flex items-start gap-3 text-base text-brand-700">
                     <span className="mt-0.5 text-brand-400">◆</span>
                     <span>{item}</span>
                   </li>
@@ -186,7 +160,7 @@ export default function LandingPage() {
                     </div>
                     <div className="pb-2">
                       <h3 className="font-semibold text-brand-900">{s.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-brand-700">{s.body}</p>
+                      <p className="mt-1 text-base leading-relaxed text-brand-700">{s.body}</p>
                     </div>
                   </div>
                 ))}
@@ -207,7 +181,7 @@ export default function LandingPage() {
           <h2 className="font-display text-3xl font-bold text-brand-900 sm:text-4xl">
             Let's create a plan <em className="italic">together.</em>
           </h2>
-          <p className="text-sm leading-relaxed text-brand-700">
+          <p className="text-base leading-relaxed text-brand-700">
             No account required. You choose what to share. Call to confirm
             before going.
           </p>

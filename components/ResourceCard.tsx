@@ -4,6 +4,25 @@ import { MatchResult } from "@/lib/types";
 import { matchLabel } from "@/lib/matching";
 import { ReasonList, WarningList, ReliabilityChip, Tag } from "./MatchBadges";
 
+function tonightStatus(status: boolean | null) {
+  if (status === true) {
+    return {
+      label: "Open tonight",
+      className: "bg-green-100 text-green-800",
+    };
+  }
+  if (status === false) {
+    return {
+      label: "Not open tonight",
+      className: "bg-brand-100 text-brand-600",
+    };
+  }
+  return {
+    label: "Check tonight's hours",
+    className: "bg-amber-100 text-amber-800",
+  };
+}
+
 export default function ResourceCard({
   result,
   best,
@@ -17,6 +36,7 @@ export default function ResourceCard({
 }) {
   const { percent, label } = matchLabel(result, best);
   const isTop = rank === 0;
+  const tonight = tonightStatus(result.openTonight);
 
   function copyScript() {
     const script = `Hi, I'm looking for help in ${
@@ -35,7 +55,7 @@ export default function ResourceCard({
     >
       {isTop && (
         <div className="rounded-t-sm bg-brand-600 px-6 py-2">
-          <p className="text-xs font-bold uppercase tracking-widest text-white">
+          <p className="text-sm font-bold uppercase tracking-widest text-white">
             Best match
           </p>
         </div>
@@ -48,7 +68,7 @@ export default function ResourceCard({
             <h3 className="font-display text-xl font-bold text-brand-900">
               {result.name}
             </h3>
-            <p className="mt-1 text-sm leading-relaxed text-brand-700">
+            <p className="mt-1 text-base leading-relaxed text-brand-700">
               {result.description}
             </p>
           </div>
@@ -71,15 +91,7 @@ export default function ResourceCard({
           <Tag>{result.type[0]}</Tag>
           <Tag>{result.distanceMiles} mi away</Tag>
           <Tag>Intake: {result.intakeHours}</Tag>
-          <span
-            className={`chip text-xs ${
-              result.openTonight
-                ? "bg-green-100 text-green-800"
-                : "bg-brand-100 text-brand-600"
-            }`}
-          >
-            {result.openTonight ? "● Open tonight" : "○ Closed tonight"}
-          </span>
+          <span className={`chip text-xs ${tonight.className}`}>{tonight.label}</span>
           <ReliabilityChip level={result.reliability} />
         </div>
 
@@ -93,24 +105,25 @@ export default function ResourceCard({
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-brand-100 pt-4">
           <div className="flex flex-col gap-0.5">
             <a
-              className="text-sm font-bold text-brand-700 hover:text-brand-500 hover:underline transition-colors"
+              className="text-base font-bold text-brand-700 hover:text-brand-500 hover:underline transition-colors"
               href={`tel:${result.phone.replace(/[^0-9+]/g, "")}`}
             >
               {result.phone}
             </a>
-            <span className="text-xs text-brand-400">{result.address}</span>
+            <span className="text-sm text-brand-400">{result.address}</span>
+            <span className="text-sm text-brand-500">{result.notes}</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {onCreatePlan && (
               <button
-                className="btn-primary px-4 py-2 text-xs"
+                className="btn-primary px-4 py-2 text-sm"
                 onClick={onCreatePlan}
               >
                 Create Action Plan
               </button>
             )}
             <button
-              className="btn-secondary px-4 py-2 text-xs"
+              className="btn-secondary px-4 py-2 text-sm"
               onClick={copyScript}
             >
               Copy Call Script

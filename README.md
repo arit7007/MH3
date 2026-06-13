@@ -1,15 +1,15 @@
-# DignityLink
+# Harbor
 
 **Track:** Housing Dignity
-**One-line pitch:** DignityLink is an AI-powered housing resource navigator that helps people experiencing housing insecurity find realistic next steps by matching them to nearby resources, explaining why each option fits, and generating a dignity-centered action plan that can be shared with outreach workers.
+**One-line pitch:** Harbor is an AI-powered housing resource navigator that helps people experiencing housing insecurity find realistic next steps by matching them to nearby resources, explaining why each option fits, and generating a dignity-centered action plan that can be shared with outreach workers.
 
 ## Problem
 
-People experiencing housing insecurity don't just need a list of shelters. They need to know which resources actually fit their situation right now. A shelter may be nearby but closed, require ID, not allow pets, not serve families, not support their language, or be unreachable without a car. DignityLink solves the "last-mile navigation" problem.
+People experiencing housing insecurity don't just need a list of shelters. They need to know which resources actually fit their situation right now. A shelter may be nearby but closed, require ID, not allow pets, not serve families, not support their language, or be unreachable without a car. Harbor solves the "last-mile navigation" problem.
 
 ## Solution
 
-DignityLink is a personalized navigation layer between fragmented housing resources and the person who urgently needs help. It asks a few simple questions, ranks resources based on real constraints, explains *why* each option fits, and generates a personalized action plan: who to call, what to bring, what to say, and a backup option.
+Harbor is a personalized navigation layer between fragmented housing resources and the person who urgently needs help. It asks a few simple questions, ranks resources based on real constraints, explains *why* each option fits, and generates a personalized action plan: who to call, what to bring, what to say, and a backup option.
 
 ## Features
 
@@ -30,7 +30,7 @@ DignityLink is a personalized navigation layer between fragmented housing resour
 
 ## How Vercel was used
 
-DignityLink is built with Next.js and deployed on Vercel, making it fast to access from phones, shelter kiosks, libraries, and outreach-worker devices without requiring installation. API routes run as serverless functions.
+Harbor is built with Next.js and deployed on Vercel, making it fast to access from phones, shelter kiosks, libraries, and outreach-worker devices without requiring installation. API routes run as serverless functions.
 
 ## How AI was used
 
@@ -49,7 +49,7 @@ Recommendations use **deterministic scoring** (`lib/matching.ts`) across urgency
 
 ## Demo persona
 
-**Maria** is in Santa Clara. She needs shelter tonight, has a dog, does not have ID, does not have a car, and prefers Spanish. DignityLink recommends **SafeStay Santa Clara** because it accepts walk-ins, does not require ID, supports Spanish, allows pets, and is reachable by public transit — then builds a plan with who to call, what to bring, what to say, and a backup option.
+**Maria** is in Santa Clara. She needs shelter tonight, has a dog, does not have ID, does not have a car, and prefers Spanish. Harbor recommends **SafeStay Santa Clara** because it accepts walk-ins, does not require ID, supports Spanish, allows pets, and is reachable by public transit — then builds a plan with who to call, what to bring, what to say, and a backup option.
 
 ## Getting started
 
@@ -97,4 +97,4 @@ Verified nonprofit resource database, real-time shelter capacity integrations, S
 
 ---
 
-*All resource data in this project is fictional demo data for Santa Clara, CA. Availability is not guaranteed. Always call to confirm before traveling.*
+*Resource data in this project is seeded from publicly listed Santa Clara County programs. Hours, bed availability, and intake rules can change quickly. Always call to confirm before traveling.*

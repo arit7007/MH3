@@ -11,59 +11,72 @@ export function scoreResource(intake: Intake, resource: Resource) {
     reasons.push("Matches your main need");
   }
 
-  if (intake.urgency === "Tonight" && resource.openTonight) {
-    score += 4;
-    reasons.push("Available tonight");
-  }
-  if (intake.urgency === "Tonight" && !resource.openTonight) {
-    score -= 4;
-    warnings.push("May not be available tonight");
+  if (intake.urgency === "Tonight") {
+    if (resource.openTonight === true) {
+      score += 4;
+      reasons.push("Published hours show service tonight");
+    } else if (resource.openTonight === false) {
+      score -= 4;
+      warnings.push("Published hours do not show service tonight");
+    } else {
+      warnings.push("Tonight availability is not clearly listed");
+    }
   }
 
-  if (resource.walkIns) {
+  if (resource.walkIns === true) {
     score += 3;
     reasons.push("Accepts walk-ins");
+  } else if (resource.walkIns === false) {
+    warnings.push("May require a call, appointment, or referral");
   } else {
-    warnings.push("May require an appointment or referral");
+    warnings.push("Walk-in policy is not clearly listed");
   }
 
   if (intake.hasPet) {
-    if (resource.allowsPets) {
+    if (resource.allowsPets === true) {
       score += 4;
       reasons.push("Allows pets");
-    } else {
+    } else if (resource.allowsPets === false) {
       score -= 5;
       warnings.push("May not allow pets");
+    } else {
+      warnings.push("Pet policy is not clearly listed");
     }
   }
 
   if (intake.noId) {
-    if (!resource.requiresId) {
+    if (resource.requiresId === false) {
       score += 3;
       reasons.push("ID not required");
-    } else {
+    } else if (resource.requiresId === true) {
       score -= 4;
       warnings.push("May require ID");
+    } else {
+      warnings.push("ID requirement is not clearly listed");
     }
   }
 
   if (intake.hasChildren) {
-    if (resource.familyFriendly) {
+    if (resource.familyFriendly === true) {
       score += 4;
       reasons.push("Family-friendly");
-    } else {
+    } else if (resource.familyFriendly === false) {
       score -= 3;
       warnings.push("May not serve families with children");
+    } else {
+      warnings.push("Family policy is not clearly listed");
     }
   }
 
   if (intake.wheelchairAccess) {
-    if (resource.wheelchairAccessible) {
+    if (resource.wheelchairAccessible === true) {
       score += 3;
       reasons.push("Wheelchair accessible");
-    } else {
+    } else if (resource.wheelchairAccessible === false) {
       score -= 3;
       warnings.push("Accessibility may be limited");
+    } else {
+      warnings.push("Accessibility details are not clearly listed");
     }
   }
 
@@ -77,11 +90,13 @@ export function scoreResource(intake: Intake, resource: Resource) {
   }
 
   if (intake.womenOrFamilySafe) {
-    if (resource.womenOnly || resource.familyFriendly) {
+    if (resource.womenOnly || resource.familyFriendly === true) {
       score += 2;
       reasons.push("Women-only or family-safe option");
-    } else {
+    } else if (resource.familyFriendly === false) {
       warnings.push("May not be women-only or family-safe");
+    } else {
+      warnings.push("Women-only or family-safe policy is not clearly listed");
     }
   }
 

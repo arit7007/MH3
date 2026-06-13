@@ -28,6 +28,12 @@ export type Transportation =
 export type Intake = {
   need: Need;
   location: string;
+  requestName?: string;
+  useCurrentLocation?: boolean;
+  currentCoordinates?: {
+    latitude: number;
+    longitude: number;
+  } | null;
   urgency: Urgency;
   transportation: Transportation;
   hasPet: boolean;
@@ -40,6 +46,7 @@ export type Intake = {
 };
 
 export type Reliability = "High" | "Medium" | "Low";
+export type RequirementStatus = boolean | null;
 
 export type Resource = {
   id: string;
@@ -48,12 +55,12 @@ export type Resource = {
   description: string;
   distanceMiles: number;
   intakeHours: string;
-  openTonight: boolean;
-  walkIns: boolean;
-  requiresId: boolean;
-  allowsPets: boolean;
-  familyFriendly: boolean;
-  wheelchairAccessible: boolean;
+  openTonight: RequirementStatus;
+  walkIns: RequirementStatus;
+  requiresId: RequirementStatus;
+  allowsPets: RequirementStatus;
+  familyFriendly: RequirementStatus;
+  wheelchairAccessible: RequirementStatus;
   womenOnly?: boolean;
   languages: string[];
   transportation: string[];

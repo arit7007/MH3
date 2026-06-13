@@ -42,7 +42,7 @@ export default function OutreachPage() {
         <h1 className="font-display text-4xl font-bold text-brand-900">
           Outreach <em className="italic text-brand-500">dashboard</em>
         </h1>
-        <p className="mt-2 text-sm text-brand-700">
+        <p className="mt-2 text-base text-brand-700">
           Review cases, see recommended resources, and copy a warm handoff so
           people don't have to repeat their story.
         </p>
@@ -56,13 +56,13 @@ export default function OutreachPage() {
           <h2 className="font-display text-xl font-bold text-brand-900">
             Parse an outreach note
           </h2>
-          <p className="mt-1 text-sm text-brand-700">
-            Type a short note in plain language — DignityLink extracts a
+          <p className="mt-1 text-base text-brand-700">
+            Type a short note in plain language — Harbor extracts a
             structured intake automatically.
           </p>
         </div>
         <textarea
-          className="w-full resize-none rounded-sm border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-900 placeholder:text-brand-300 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-300 transition"
+          className="w-full resize-none rounded-sm border border-brand-200 bg-brand-50 px-4 py-3 text-base text-brand-900 placeholder:text-brand-300 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-300 transition"
           rows={3}
           value={note}
           onChange={(e) => setNote(e.target.value)}
@@ -82,10 +82,10 @@ export default function OutreachPage() {
           )}
         </button>
         {parseError && (
-          <p className="text-sm text-amber-700">{parseError}</p>
+          <p className="text-base text-amber-700">{parseError}</p>
         )}
         {parsed && (
-          <pre className="overflow-x-auto rounded-sm bg-brand-50 p-4 text-xs text-brand-800">
+          <pre className="overflow-x-auto rounded-sm bg-brand-50 p-4 text-sm text-brand-800">
             {JSON.stringify(parsed, null, 2)}
           </pre>
         )}

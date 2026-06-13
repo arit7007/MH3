@@ -47,6 +47,9 @@ function ruleBasedExtract(note: string): Intake {
   return {
     need,
     location: extractLocation(note),
+    requestName: undefined,
+    useCurrentLocation: false,
+    currentCoordinates: null,
     urgency,
     transportation,
     hasPet: has("dog", "cat", "pet", "animal"),
@@ -89,6 +92,9 @@ export async function POST(req: NextRequest) {
     const intake: Intake = {
       need: (parsed.need as Need) || fallback.need,
       location: parsed.location || fallback.location,
+      requestName: undefined,
+      useCurrentLocation: false,
+      currentCoordinates: null,
       urgency: (parsed.urgency as Urgency) || fallback.urgency,
       transportation: (parsed.transportation as Transportation) || fallback.transportation,
       hasPet: parsed.hasPet ?? fallback.hasPet,

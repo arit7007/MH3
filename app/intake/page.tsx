@@ -9,7 +9,7 @@ export default function IntakePage() {
         <h1 className="font-display text-4xl font-bold text-brand-900">
           Let's find <em className="italic text-brand-500">what fits.</em>
         </h1>
-        <p className="text-sm text-brand-700">
+        <p className="text-base text-brand-700">
           A few simple questions. There are no wrong answers, and you choose
           what to share.
         </p>

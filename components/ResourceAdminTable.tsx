@@ -1,35 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Reliability, Resource } from "@/lib/types";
+import { Reliability, RequirementStatus, Resource } from "@/lib/types";
 import { getResources, resetOverrides, saveOverride } from "@/lib/store";
 
-function Toggle({
-  on,
+function RequirementSelect({
+  value,
   onChange,
   label,
 }: {
-  on: boolean;
-  onChange: (v: boolean) => void;
+  value: RequirementStatus;
+  onChange: (v: RequirementStatus) => void;
   label: string;
 }) {
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={on}
+    <select
       aria-label={label}
-      onClick={() => onChange(!on)}
-      className={`relative inline-flex h-6 w-11 items-center rounded-full transition ${
-        on ? "bg-brand-600" : "bg-slate-300"
-      }`}
+      value={value === null ? "unknown" : value ? "yes" : "no"}
+      onChange={(e) =>
+        onChange(
+          e.target.value === "unknown" ? null : e.target.value === "yes"
+        )
+      }
+      className="rounded-lg border border-brand-200 px-2 py-1 text-sm focus:border-brand-400 focus:outline-none"
     >
-      <span
-        className={`inline-block h-5 w-5 transform rounded-full bg-white transition ${
-          on ? "translate-x-5" : "translate-x-1"
-        }`}
-      />
-    </button>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+      <option value="unknown">Unknown</option>
+    </select>
   );
 }
 
@@ -70,29 +68,29 @@ export default function ResourceAdminTable() {
               <tr key={r.id} className="align-middle">
                 <td className="px-3 py-3 font-medium text-brand-900">{r.name}</td>
                 <td className="px-3 py-3">
-                  <Toggle
-                    on={r.openTonight}
+                  <RequirementSelect
+                    value={r.openTonight}
                     label={`${r.name} open tonight`}
                     onChange={(v) => update(r.id, { openTonight: v })}
                   />
                 </td>
                 <td className="px-3 py-3">
-                  <Toggle
-                    on={r.walkIns}
+                  <RequirementSelect
+                    value={r.walkIns}
                     label={`${r.name} walk-ins`}
                     onChange={(v) => update(r.id, { walkIns: v })}
                   />
                 </td>
                 <td className="px-3 py-3">
-                  <Toggle
-                    on={r.allowsPets}
+                  <RequirementSelect
+                    value={r.allowsPets}
                     label={`${r.name} pets allowed`}
                     onChange={(v) => update(r.id, { allowsPets: v })}
                   />
                 </td>
                 <td className="px-3 py-3">
-                  <Toggle
-                    on={r.requiresId}
+                  <RequirementSelect
+                    value={r.requiresId}
                     label={`${r.name} ID required`}
                     onChange={(v) => update(r.id, { requiresId: v })}
                   />
@@ -123,7 +121,7 @@ export default function ResourceAdminTable() {
         </table>
       </div>
       <button className="btn-secondary" onClick={reset}>
-        Reset to demo defaults
+        Reset to sourced defaults
       </button>
     </div>
   );

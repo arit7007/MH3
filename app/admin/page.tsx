@@ -11,7 +11,7 @@ export default function AdminPage() {
         </p>
       </div>
 
-      <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+      <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-base text-amber-900">
         Signed-in admin mode. Resource edits are still stored locally in your
         browser for this prototype.
       </div>

@@ -1,8 +1,8 @@
 {
-  "name": "dignity-link",
+  "name": "harbor",
   "version": "1.0.0",
   "private": true,
-  "description": "DignityLink — an AI-powered housing resource navigator",
+  "description": "Harbor — an AI-powered housing resource navigator",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

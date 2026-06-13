@@ -3,8 +3,8 @@
 import { Intake, Resource } from "./types";
 import { resources as defaultResources } from "./resources";
 
-const INTAKE_KEY = "dignitylink_intake";
-const OVERRIDES_KEY = "dignitylink_resource_overrides";
+const INTAKE_KEY = "harbor_intake";
+const OVERRIDES_KEY = "harbor_resource_overrides";
 
 type ResourceOverride = Partial<Resource>;
 
@@ -30,7 +30,7 @@ export function clearIntake() {
 }
 
 // Admin overrides let a partner organization adjust live status. These are
-// merged on top of the default demo resource data.
+// merged on top of the default seeded resource data.
 export function loadOverrides(): Record<string, ResourceOverride> {
   if (typeof window === "undefined") return {};
   const raw = window.localStorage.getItem(OVERRIDES_KEY);

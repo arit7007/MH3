@@ -26,7 +26,7 @@ export default function PlanPage() {
     const ranked = rankResources(i, getResources());
     const selectedId =
       typeof window !== "undefined"
-        ? window.localStorage.getItem("dignitylink_selected")
+        ? window.localStorage.getItem("harbor_selected")
         : null;
     const chosen = ranked.find((r) => r.id === selectedId) ?? ranked[0];
     const backup = ranked.find((r) => r.id !== chosen.id);
@@ -52,7 +52,7 @@ export default function PlanPage() {
     return (
       <div className="flex items-center gap-3 pt-20 text-brand-600">
         <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-brand-200 border-t-brand-500" />
-        <span className="text-sm italic text-brand-500">Preparing your plan…</span>
+        <span className="text-base italic text-brand-500">Preparing your plan…</span>
       </div>
     );
   }
@@ -63,7 +63,7 @@ export default function PlanPage() {
         <h1 className="font-display text-2xl font-bold text-brand-900">
           No plan yet
         </h1>
-        <p className="text-sm text-brand-700">
+        <p className="text-base text-brand-700">
           Start the navigator to create an action plan.
         </p>
         <Link href="/intake" className="btn-primary inline-flex">
@@ -85,12 +85,17 @@ export default function PlanPage() {
               <>Your <em className="italic text-brand-500">plan</em></>
             )}
           </h1>
-          <p className="mt-2 text-sm text-brand-700">
+          {intake.requestName ? (
+            <p className="mt-2 text-base font-semibold text-brand-800">
+              Prepared for {intake.requestName}
+            </p>
+          ) : null}
+          <p className="mt-2 text-base text-brand-700">
             Best option:{" "}
             <span className="font-semibold text-brand-800">{top.name}</span>
           </p>
         </div>
-        <Link href="/results" className="btn-secondary py-2.5 text-xs self-end">
+        <Link href="/results" className="btn-secondary py-2.5 text-sm self-end">
           ← Back to options
         </Link>
       </div>

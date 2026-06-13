@@ -30,7 +30,7 @@ export default function ResultsPage() {
         <h1 className="font-display text-2xl font-bold text-brand-900">
           No intake found
         </h1>
-        <p className="text-sm text-brand-700">
+        <p className="text-base text-brand-700">
           Answer a few quick questions and we'll show options that fit.
         </p>
         <Link href="/intake" className="btn-primary inline-flex">
@@ -53,9 +53,14 @@ export default function ResultsPage() {
           <h1 className="font-display text-4xl font-bold text-brand-900">
             Options that <em className="italic text-brand-500">may fit</em>
           </h1>
-          <p className="mt-2 text-sm text-brand-700">{summary}</p>
+          {intake.requestName ? (
+            <p className="mt-2 text-base font-semibold text-brand-800">
+              Request for {intake.requestName}
+            </p>
+          ) : null}
+          <p className="mt-2 text-base text-brand-700">{summary}</p>
         </div>
-        <Link href="/intake" className="btn-secondary py-2.5 text-xs self-end">
+        <Link href="/intake" className="btn-secondary py-2.5 text-sm self-end">
           Change answers
         </Link>
       </div>
@@ -70,7 +75,7 @@ export default function ResultsPage() {
             best={best}
             rank={i}
             onCreatePlan={() => {
-              window.localStorage.setItem("dignitylink_selected", r.id);
+              window.localStorage.setItem("harbor_selected", r.id);
               router.push("/plan");
             }}
           />
@@ -85,6 +90,7 @@ function describeIntake(intake: Intake): string {
   parts.push(`near ${intake.location}`);
   parts.push(`(${intake.urgency.toLowerCase()})`);
   const extras: string[] = [];
+  if (intake.useCurrentLocation) extras.push("using current location");
   if (intake.hasPet) extras.push("with a pet");
   if (intake.hasChildren) extras.push("with family");
   if (intake.noId) extras.push("no ID");
