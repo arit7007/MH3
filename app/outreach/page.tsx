@@ -36,35 +36,55 @@ export default function OutreachPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-extrabold text-brand-900">Outreach dashboard</h1>
-        <p className="text-brand-700">
-          Review cases, see recommended resources, and copy a warm handoff summary so
+    <div className="space-y-8 pt-8">
+      <div>
+        <p className="section-label">Outreach</p>
+        <h1 className="text-3xl font-extrabold text-brand-900">
+          Outreach dashboard
+        </h1>
+        <p className="mt-1 text-slate-500">
+          Review cases, see recommended resources, and copy a warm handoff so
           people don't have to repeat their story.
         </p>
       </div>
 
       <PrivacyBanner variant="demo" />
 
-      <section className="card space-y-3">
-        <h2 className="text-lg font-bold text-brand-900">Parse an outreach note</h2>
-        <p className="text-sm text-brand-600">
-          Type a short note in plain language. DignityLink extracts a structured
-          intake.
-        </p>
+      <section className="card space-y-4">
+        <div>
+          <h2 className="text-lg font-bold text-brand-900">
+            Parse an outreach note
+          </h2>
+          <p className="mt-0.5 text-sm text-slate-500">
+            Type a short note in plain language — DignityLink extracts a
+            structured intake automatically.
+          </p>
+        </div>
         <textarea
-          className="w-full rounded-xl border border-brand-200 p-3 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          className="field-input resize-none text-sm"
           rows={3}
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
-        <button className="btn-primary" onClick={parseNote} disabled={parsing}>
-          {parsing ? "Parsing…" : "Extract structured intake"}
+        <button
+          className="btn-primary"
+          onClick={parseNote}
+          disabled={parsing}
+        >
+          {parsing ? (
+            <span className="flex items-center gap-2">
+              <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+              Parsing…
+            </span>
+          ) : (
+            "Extract structured intake"
+          )}
         </button>
-        {parseError && <p className="text-sm text-amber-700">{parseError}</p>}
+        {parseError && (
+          <p className="text-sm text-amber-700">{parseError}</p>
+        )}
         {parsed && (
-          <pre className="overflow-x-auto rounded-lg bg-brand-50 p-3 text-xs text-brand-800">
+          <pre className="overflow-x-auto rounded-xl bg-brand-50 p-4 text-xs text-brand-800">
             {JSON.stringify(parsed, null, 2)}
           </pre>
         )}

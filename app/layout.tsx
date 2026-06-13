@@ -1,6 +1,14 @@
 import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "DignityLink — Find the right next step, fast",
@@ -11,7 +19,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#286662",
+  themeColor: "#7c3aed",
 };
 
 export default function RootLayout({
@@ -20,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen font-sans">
+    <html lang="en" className={jakarta.variable}>
+      <body className="min-h-screen font-sans antialiased">
         <Header />
-        <main className="mx-auto w-full max-w-5xl px-4 pb-24 pt-6">{children}</main>
+        <main className="mx-auto w-full max-w-5xl px-4 pb-24">{children}</main>
       </body>
     </html>
   );

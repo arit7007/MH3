@@ -26,9 +26,10 @@ export default function ResultsPage() {
 
   if (loaded && !intake) {
     return (
-      <div className="mx-auto max-w-xl space-y-4 text-center">
+      <div className="mx-auto max-w-xl space-y-4 pt-16 text-center">
+        <p className="text-5xl">🔍</p>
         <h1 className="text-2xl font-bold text-brand-900">No intake found</h1>
-        <p className="text-brand-700">
+        <p className="text-slate-500">
           Answer a few quick questions and we'll show options that fit.
         </p>
         <Link href="/intake" className="btn-primary">
@@ -44,13 +45,16 @@ export default function ResultsPage() {
   const summary = describeIntake(intake);
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="space-y-8 pt-8">
+      <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-extrabold text-brand-900">Options that may fit</h1>
-          <p className="mt-1 text-brand-700">{summary}</p>
+          <p className="section-label">Results</p>
+          <h1 className="text-3xl font-extrabold text-brand-900">
+            Options that may fit
+          </h1>
+          <p className="mt-1 text-sm text-slate-500">{summary}</p>
         </div>
-        <Link href="/intake" className="btn-secondary">
+        <Link href="/intake" className="btn-secondary text-sm">
           Change answers
         </Link>
       </div>
@@ -85,5 +89,7 @@ function describeIntake(intake: Intake): string {
   if (intake.noId) extras.push("no ID");
   if (intake.prefersSpanish) extras.push("Spanish preferred");
   if (intake.wheelchairAccess) extras.push("wheelchair access");
-  return parts.join(" ") + (extras.length ? ` · ${extras.join(", ")}` : "");
+  return (
+    parts.join(" ") + (extras.length ? ` · ${extras.join(", ")}` : "")
+  );
 }
