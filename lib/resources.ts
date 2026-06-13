@@ -192,7 +192,7 @@ export const resources: Resource[] = [
   {
     id: "here4you-hotline",
     name: "Here4You Hotline (Bill Wilson Center)",
-    type: ["Transportation help", "Case management", "ID/document help"],
+    type: ["Transportation help", "Case management"],
     description:
       "County shelter hotline that matches people to temporary housing programs and can coordinate transportation to shelter.",
     distanceMiles: 1.0,
