@@ -72,6 +72,7 @@ export default function ResultsPage() {
           <ResourceCard
             key={r.id}
             result={r}
+            intake={intake}
             best={best}
             rank={i}
             onCreatePlan={() => {

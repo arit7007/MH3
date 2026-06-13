@@ -1,7 +1,8 @@
 "use client";
 
-import { MatchResult } from "@/lib/types";
+import { getDirectionsUrl, getEmbedUrl, getMapUrl, getTravelModeLabel } from "@/lib/googleMaps";
 import { matchLabel } from "@/lib/matching";
+import { Intake, MatchResult } from "@/lib/types";
 import { ReasonList, WarningList, ReliabilityChip, Tag } from "./MatchBadges";
 
 function tonightStatus(status: boolean | null) {
@@ -25,11 +26,13 @@ function tonightStatus(status: boolean | null) {
 
 export default function ResourceCard({
   result,
+  intake,
   best,
   rank,
   onCreatePlan,
 }: {
   result: MatchResult;
+  intake: Intake;
   best: number;
   rank: number;
   onCreatePlan?: () => void;
@@ -37,6 +40,10 @@ export default function ResourceCard({
   const { percent, label } = matchLabel(result, best);
   const isTop = rank === 0;
   const tonight = tonightStatus(result.openTonight);
+  const directionsUrl = getDirectionsUrl(intake, result);
+  const mapUrl = getMapUrl(result);
+  const embedUrl = getEmbedUrl(intake, result);
+  const travelModeLabel = getTravelModeLabel(intake);
 
   function copyScript() {
     const script = `Hi, I'm looking for help in ${
@@ -100,6 +107,43 @@ export default function ResourceCard({
           <ReasonList reasons={result.reasons} />
           <WarningList warnings={result.warnings} />
         </div>
+
+        <section className="space-y-3 rounded-sm border border-brand-100 bg-brand-50/60 p-4">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="section-label">Google Maps</p>
+              <p className="mt-1 text-base text-brand-700">{travelModeLabel}</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <a
+                className="btn-secondary px-4 py-2 text-sm"
+                href={mapUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open Map
+              </a>
+              <a
+                className="btn-primary px-4 py-2 text-sm"
+                href={directionsUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Fastest Route
+              </a>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-sm border border-brand-200 bg-white">
+            <iframe
+              title={`Map for ${result.name}`}
+              src={embedUrl}
+              className="h-64 w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </section>
 
         {/* Footer */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-brand-100 pt-4">
