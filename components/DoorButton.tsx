@@ -5,33 +5,17 @@ import { useRouter } from "next/navigation";
 
 export default function DoorButton() {
   const router = useRouter();
-  const [phase, setPhase] = useState<"idle" | "open" | "zoom">("idle");
-  const [zoomReady, setZoomReady] = useState(false);
+  const [phase, setPhase] = useState<"idle" | "open">("idle");
 
   function handleDoor() {
     if (phase !== "idle") return;
     setPhase("open");
-    setTimeout(() => {
-      setPhase("zoom");
-      // Double-frame trick so the scale(0) renders before transition fires
-      requestAnimationFrame(() => requestAnimationFrame(() => setZoomReady(true)));
-    }, 800);
-    setTimeout(() => router.push("/intake"), 1580);
+    // Navigate as the door finishes swinging — intake page expands in on its own
+    setTimeout(() => router.push("/intake"), 720);
   }
 
   return (
     <>
-      {/* Full-screen zoom overlay — expands from door to fill screen */}
-      {phase === "zoom" && (
-        <div
-          className="fixed inset-0 z-50 bg-brand-900"
-          style={{
-            transform: zoomReady ? "scale(1)" : "scale(0)",
-            transformOrigin: "center 62%",
-            transition: "transform 0.72s cubic-bezier(0.55, 0, 1, 1)",
-          }}
-        />
-      )}
 
       <div className="flex flex-col items-center" style={{ userSelect: "none" }}>
         {/* House */}
