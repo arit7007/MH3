@@ -16,8 +16,8 @@ DignityLink is a personalized navigation layer between fragmented housing resour
 - **Mobile-first intake** — large buttons, minimal typing, calm and nonjudgmental language, with a "Use Maria demo persona" shortcut for smooth judging.
 - **Explainable, ranked results** — every recommendation shows a match score, the reasons it matched, and possible concerns.
 - **AI action plans with fallback** — a deterministic template always produces a usable plan; when an API key is present, Claude rewrites it into warmer, more specific language (including a Spanish call script).
-- **Outreach dashboard** — case list, recommended + backup resource, follow-up status, copyable warm-handoff summaries, and an AI/keyword outreach-note parser that turns messy notes into structured intake.
-- **Resource admin** — partner organizations can toggle open-tonight, walk-ins, pets, ID requirements, hours, and reliability; changes immediately affect recommendations.
+- **Authenticated outreach dashboard** — outreach workers create an account or log in before viewing cases, recommendations, warm-handoff summaries, and the AI/keyword outreach-note parser.
+- **Authenticated resource admin** — signed-in partner staff can toggle open-tonight, walk-ins, pets, ID requirements, hours, and reliability; changes immediately affect recommendations.
 - **Privacy-first** — no account required, demo-data banners throughout, and copy/share is always manual.
 
 ## Tech Stack
@@ -42,7 +42,7 @@ Recommendations use **deterministic scoring** (`lib/matching.ts`) across urgency
 
 ## Responsible AI & privacy
 
-- No account required. Sensitive details are used only to create a plan and can be cleared anytime.
+- No account is required for people seeking help. Outreach and admin tools require a worker account through Supabase Auth.
 - We do not claim live shelter availability — every screen reminds users to call to confirm.
 - No legal or medical advice; if someone may be in immediate danger, the plan advises contacting emergency services or a crisis hotline.
 - Only the information needed to build a plan is collected.
@@ -55,13 +55,27 @@ Recommendations use **deterministic scoring** (`lib/matching.ts`) across urgency
 
 ```bash
 npm install
-cp .env.example .env.local   # optional: add ANTHROPIC_API_KEY for richer plans
+cp .env.example .env.local
 npm run dev
 ```
 
 Open http://localhost:3000.
 
-To deploy: push to a Git repo and import into Vercel. Set `ANTHROPIC_API_KEY` in the Vercel project settings (optional). The app works fully without it via deterministic fallbacks.
+Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` from your Supabase project before using `/outreach` or `/admin`. `ANTHROPIC_API_KEY` is optional; the app works without it via deterministic fallbacks.
+
+In Supabase Auth settings, add this redirect URL for local development:
+
+```text
+http://localhost:3000/auth/callback
+```
+
+For Vercel, add the deployed callback URL too:
+
+```text
+https://your-domain.vercel.app/auth/callback
+```
+
+To deploy: push to a Git repo and import into Vercel. Set the Supabase env vars, plus `ANTHROPIC_API_KEY` if you want richer AI-generated plans.
 
 ## Routes
 
@@ -71,8 +85,9 @@ To deploy: push to a Git repo and import into Vercel. Set `ANTHROPIC_API_KEY` in
 | `/intake` | Mobile-first guided intake |
 | `/results` | Ranked, explainable resource cards |
 | `/plan` | AI/template action plan |
-| `/outreach` | Outreach worker dashboard + note parser |
-| `/admin` | Resource management (demo mode) |
+| `/login` | Outreach worker account creation and login |
+| `/outreach` | Protected outreach worker dashboard + note parser |
+| `/admin` | Protected resource management |
 | `/api/generate-plan` | Action plan generation (AI + fallback) |
 | `/api/extract-intake` | Outreach note parsing (AI + fallback) |
 
