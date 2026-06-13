@@ -93,7 +93,6 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f) => (
               <div key={f.label} className="space-y-3 text-center">
-                <p className="section-label">{f.label}</p>
                 <h3 className="font-display text-lg font-bold leading-snug text-brand-900 whitespace-pre-line">
                   {f.heading}
                 </h3>
