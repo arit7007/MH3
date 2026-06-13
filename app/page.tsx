@@ -1,5 +1,5 @@
-import Link from "next/link";
 import PrivacyBanner from "@/components/PrivacyBanner";
+import DoorButton from "@/components/DoorButton";
 
 const features = [
   {
@@ -63,12 +63,7 @@ export default function LandingPage() {
               language, family needs, and accessibility.
             </p>
             <div className="flex justify-center">
-              <Link
-                href="/intake"
-                className="btn-primary min-w-[18rem] px-12 py-5 text-2xl font-bold sm:min-w-[22rem] sm:px-16 sm:py-6 sm:text-3xl"
-              >
-                Start Navigator
-              </Link>
+              <DoorButton />
             </div>
             <PrivacyBanner variant="privacy" />
           </div>
