@@ -12,8 +12,8 @@ export default function AdminPage() {
       </div>
 
       <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-        Demo admin mode. In production, this would be restricted to verified partner
-        organizations. Edits are stored locally in your browser only.
+        Signed-in admin mode. Resource edits are still stored locally in your
+        browser for this prototype.
       </div>
 
       <ResourceAdminTable />

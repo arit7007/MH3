@@ -38,8 +38,8 @@ export default function LandingPage() {
           <Link href="/intake" className="btn-primary w-full sm:w-auto">
             Start Navigator
           </Link>
-          <Link href="/outreach" className="btn-secondary w-full sm:w-auto">
-            Outreach Worker Mode
+          <Link href="/login" className="btn-secondary w-full sm:w-auto">
+            Worker Login
           </Link>
         </div>
         <div className="mx-auto max-w-2xl space-y-2">
