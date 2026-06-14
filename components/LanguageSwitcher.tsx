@@ -1,26 +1,22 @@
 "use client";
 
-import { LANGUAGES } from "@/lib/translations";
+import { LANGUAGES, LangCode } from "@/lib/translations";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function LanguageSwitcher() {
   const { lang, setLang } = useLanguage();
 
   return (
-    <div className="flex items-center gap-1">
+    <select
+      value={lang}
+      onChange={(e) => setLang(e.target.value as LangCode)}
+      className="rounded border border-brand-200 bg-white px-2 py-1.5 text-xs font-semibold text-brand-700 hover:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 transition-colors cursor-pointer"
+    >
       {LANGUAGES.map((l) => (
-        <button
-          key={l.code}
-          onClick={() => setLang(l.code)}
-          className={`rounded px-2 py-1 text-xs font-semibold transition-colors ${
-            lang === l.code
-              ? "bg-brand-500 text-white"
-              : "text-brand-500 hover:bg-brand-100"
-          }`}
-        >
+        <option key={l.code} value={l.code}>
           {l.native}
-        </button>
+        </option>
       ))}
-    </div>
+    </select>
   );
 }
