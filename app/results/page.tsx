@@ -67,7 +67,7 @@ export default function ResultsPage() {
   if (!intake) return null;
 
   const best = ranked[0]?.score ?? 1;
-  const summary = describeIntake(intake);
+  const summary = useDescribeIntake(intake);
 
   return (
     <div className="space-y-8 pt-12">
@@ -126,15 +126,16 @@ export default function ResultsPage() {
   );
 }
 
-function describeIntake(intake: Intake): string {
-  const parts: string[] = [`Looking for ${intake.need.toLowerCase()}`];
-  parts.push(`near ${intake.location}`);
-  parts.push(`(${intake.urgency.toLowerCase()})`);
+function useDescribeIntake(intake: Intake): string {
+  const { t } = useLanguage();
+  const urgencyLabel = t.urgency[intake.urgency]?.label ?? intake.urgency;
+  const parts = [`${t.lookingFor} ${intake.need.toLowerCase()} ${t.nearLabel} ${intake.location} (${urgencyLabel.toLowerCase()})`];
   const extras: string[] = [];
-  if (intake.hasPet) extras.push("with a pet");
-  if (intake.hasChildren) extras.push("with family");
-  if (intake.noId) extras.push("no ID");
-  if (intake.prefersSpanish) extras.push("Spanish preferred");
-  if (intake.wheelchairAccess) extras.push("wheelchair access");
-  return parts.join(" ") + (extras.length ? ` · ${extras.join(", ")}` : "");
+  if (intake.hasPet) extras.push(t.intakeConstraints.pet);
+  if (intake.hasChildren) extras.push(t.intakeConstraints.family);
+  if (intake.noId) extras.push(t.intakeConstraints.noId);
+  if (intake.prefersSpanish) extras.push(t.intakeConstraints.spanish);
+  if (intake.wheelchairAccess) extras.push(t.intakeConstraints.wheelchair);
+  if (intake.womenOrFamilySafe) extras.push(t.intakeConstraints.womenSafe);
+  return parts[0] + (extras.length ? ` · ${extras.join(", ")}` : "");
 }

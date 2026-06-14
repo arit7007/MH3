@@ -1,28 +1,10 @@
 "use client";
 
-import { getDirectionsUrl, getEmbedUrl, getMapUrl, getTravelModeLabel } from "@/lib/googleMaps";
+import { getDirectionsUrl, getEmbedUrl, getMapUrl, getTravelMode } from "@/lib/googleMaps";
 import { matchLabel } from "@/lib/matching";
 import { Intake, MatchResult } from "@/lib/types";
 import { ReasonList, WarningList, ReliabilityChip, Tag } from "./MatchBadges";
-
-function tonightStatus(status: boolean | null) {
-  if (status === true) {
-    return {
-      label: "Open tonight",
-      className: "bg-green-100 text-green-800",
-    };
-  }
-  if (status === false) {
-    return {
-      label: "Not open tonight",
-      className: "bg-brand-100 text-brand-600",
-    };
-  }
-  return {
-    label: "Check tonight's hours",
-    className: "bg-amber-100 text-amber-800",
-  };
-}
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ResourceCard({
   result,
@@ -37,13 +19,25 @@ export default function ResourceCard({
   rank: number;
   onCreatePlan?: () => void;
 }) {
+  const { t } = useLanguage();
   const { percent, label } = matchLabel(result, best);
   const isTop = rank === 0;
-  const tonight = tonightStatus(result.openTonight);
   const directionsUrl = getDirectionsUrl(intake, result);
   const mapUrl = getMapUrl(result);
   const embedUrl = getEmbedUrl(intake, result);
-  const travelModeLabel = getTravelModeLabel(intake);
+
+  const travelKey = intake.transportation === "Need transportation help"
+    ? "needHelp"
+    : getTravelMode(intake) === "transit" ? "transit"
+    : getTravelMode(intake) === "driving" ? "driving"
+    : "walking";
+  const travelModeLabel = t.travelLabels[travelKey];
+
+  const tonightInfo = result.openTonight === true
+    ? { label: t.openTonightLabel, className: "bg-green-100 text-green-800" }
+    : result.openTonight === false
+    ? { label: t.notOpenTonightLabel, className: "bg-brand-100 text-brand-600" }
+    : { label: t.checkHoursLabel, className: "bg-amber-100 text-amber-800" };
 
   function copyScript() {
     const script = `Hi, I'm looking for help in ${
@@ -63,7 +57,7 @@ export default function ResourceCard({
       {isTop && (
         <div className="rounded-t-sm bg-brand-600 px-6 py-2">
           <p className="text-sm font-bold uppercase tracking-widest text-white">
-            Best match
+            {t.bestMatch}
           </p>
         </div>
       )}
@@ -83,7 +77,7 @@ export default function ResourceCard({
             <span className="font-display text-2xl font-bold text-brand-600">
               {percent}%
             </span>
-            <span className="section-label text-[10px]">match</span>
+            <span className="section-label text-[10px]">{t.matchPct}</span>
             <div className="h-1 w-14 overflow-hidden rounded-full bg-brand-100">
               <div
                 className="h-full rounded-full bg-brand-500 transition-all"
@@ -96,9 +90,9 @@ export default function ResourceCard({
         {/* Tags */}
         <div className="flex flex-wrap gap-2">
           <Tag>{result.type[0]}</Tag>
-          <Tag>{result.distanceMiles} mi away</Tag>
-          <Tag>Intake: {result.intakeHours}</Tag>
-          <span className={`chip text-xs ${tonight.className}`}>{tonight.label}</span>
+          <Tag>{result.distanceMiles} {t.miAway}</Tag>
+          <Tag>{t.intakeColon} {result.intakeHours}</Tag>
+          <span className={`chip text-xs ${tonightInfo.className}`}>{tonightInfo.label}</span>
           <ReliabilityChip level={result.reliability} />
         </div>
 
@@ -111,7 +105,7 @@ export default function ResourceCard({
         <section className="space-y-3 rounded-sm border border-brand-100 bg-brand-50/60 p-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <p className="section-label">Google Maps</p>
+              <p className="section-label">{t.googleMapsLabel}</p>
               <p className="mt-1 text-base text-brand-700">{travelModeLabel}</p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -121,7 +115,7 @@ export default function ResourceCard({
                 target="_blank"
                 rel="noreferrer"
               >
-                Open Map
+                {t.openMapBtn}
               </a>
               <a
                 className="btn-primary px-4 py-2 text-sm"
@@ -129,7 +123,7 @@ export default function ResourceCard({
                 target="_blank"
                 rel="noreferrer"
               >
-                Fastest Route
+                {t.fastestRouteBtn}
               </a>
             </div>
           </div>
@@ -163,14 +157,14 @@ export default function ResourceCard({
                 className="btn-primary px-4 py-2 text-sm"
                 onClick={onCreatePlan}
               >
-                Create Action Plan
+                {t.createPlanBtn}
               </button>
             )}
             <button
               className="btn-secondary px-4 py-2 text-sm"
               onClick={copyScript}
             >
-              Copy Call Script
+              {t.copyScriptBtn}
             </button>
           </div>
         </div>
