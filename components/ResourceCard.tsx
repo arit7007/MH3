@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { getDirectionsUrl, getEmbedUrl, getMapUrl, getTravelMode } from "@/lib/googleMaps";
 import { matchLabel } from "@/lib/matching";
 import { Intake, MatchResult } from "@/lib/types";
 import { ReasonList, WarningList, ReliabilityChip, Tag } from "./MatchBadges";
 import { useLanguage } from "@/lib/LanguageContext";
+import { buildFallbackPlan } from "@/lib/planFallback";
 
 export default function ResourceCard({
   result,
@@ -20,8 +22,12 @@ export default function ResourceCard({
   onCreatePlan?: () => void;
 }) {
   const { t } = useLanguage();
+  const [showScript, setShowScript] = useState(false);
+  const [copied, setCopied] = useState(false);
   const { percent, label } = matchLabel(result, best);
   const isTop = rank === 0;
+
+  const script = buildFallbackPlan(intake, result).messageScript;
   const directionsUrl = getDirectionsUrl(intake, result);
   const mapUrl = getMapUrl(result);
   const embedUrl = getEmbedUrl(intake, result);
@@ -39,11 +45,10 @@ export default function ResourceCard({
     ? { label: t.notOpenTonightLabel, className: "bg-brand-100 text-brand-600" }
     : { label: t.checkHoursLabel, className: "bg-amber-100 text-amber-800" };
 
-  function copyScript() {
-    const script = `Hi, I'm looking for help in ${
-      result.address.includes("Santa Clara") ? "Santa Clara" : "this area"
-    }. Do you have space or an appointment available? My situation: I need ${result.type[0].toLowerCase()}.`;
+  function handleCopy() {
     navigator.clipboard?.writeText(script);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   return (
@@ -139,6 +144,24 @@ export default function ResourceCard({
           </div>
         </section>
 
+        {/* Call script box */}
+        {showScript && (
+          <div className="rounded-sm border border-brand-200 bg-brand-50 p-4 space-y-3">
+            <p className="section-label text-[10px]">What to say when you call</p>
+            <div className="space-y-1.5">
+              {script.split("\n").map((line, i) => (
+                <p key={i} className="text-base text-brand-800">{line}</p>
+              ))}
+            </div>
+            <button
+              className="btn-secondary px-3 py-1.5 text-sm"
+              onClick={handleCopy}
+            >
+              {copied ? "Copied!" : "Copy"}
+            </button>
+          </div>
+        )}
+
         {/* Footer */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-brand-100 pt-4">
           <div className="flex flex-col gap-0.5">
@@ -162,9 +185,9 @@ export default function ResourceCard({
             )}
             <button
               className="btn-secondary px-4 py-2 text-sm"
-              onClick={copyScript}
+              onClick={() => setShowScript((s) => !s)}
             >
-              {t.copyScriptBtn}
+              {showScript ? "Hide call script" : t.copyScriptBtn}
             </button>
           </div>
         </div>
