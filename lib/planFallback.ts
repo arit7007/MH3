@@ -35,10 +35,9 @@ export function buildFallbackPlan(
       "Ask about transportation help or a bus pass to reach the location."
     );
   }
+  const bringItems = (top.whatToBring.length ? top.whatToBring : ["your belongings"]).map(lcFirst);
   nextSteps.push(
-    `Bring ${joinList(top.whatToBring.length ? top.whatToBring : ["your belongings"])}.${
-      intake.noId ? " ID is not required for intake here." : ""
-    }`
+    `Bring ${joinList(bringItems)}.${intake.noId ? " ID is not required for intake here." : ""}`
   );
 
   const messageScript = buildMessage(intake, top, false);
@@ -108,6 +107,10 @@ function needEsp(intake: Intake): string {
     default:
       return "ayuda";
   }
+}
+
+function lcFirst(s: string): string {
+  return s.charAt(0).toLowerCase() + s.slice(1);
 }
 
 function joinList(items: string[], spanish = false): string {

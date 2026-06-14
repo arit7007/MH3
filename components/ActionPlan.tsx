@@ -86,15 +86,6 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
         <p className="text-base leading-relaxed text-brand-800">{plan.backupPlan}</p>
       </PlanSection>
 
-      <PlanSection
-        title="Outreach worker summary"
-        action={<CopyButton text={plan.outreachSummary} label="Copy warm handoff" />}
-      >
-        <p className="text-base leading-relaxed text-brand-800">
-          {plan.outreachSummary}
-        </p>
-      </PlanSection>
-
       <div className="flex items-start gap-3 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3">
         <span className="section-label mt-0.5 text-amber-700">Note</span>
         <p className="text-base text-amber-900">
