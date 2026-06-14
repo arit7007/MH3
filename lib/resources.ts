@@ -232,7 +232,7 @@ export const resources: Resource[] = [
     address: "370 West Julian Street, San Jose, CA 95110",
     whatToBring: ["Photo ID if available", "Medical history or prescriptions", "Clothing for a residential stay"],
     notes:
-      "Sliding-scale fees; accepts Medi-Cal. Offers detox referrals and residential treatment. Call first — direct walk-in intake is not available.",
+      "Sliding-scale fees; accepts Medi-Cal. Offers detox referrals and residential treatment. Call ahead. Direct walk-in intake is not available.",
     reliability: "High",
   },
   {

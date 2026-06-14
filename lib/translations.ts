@@ -19,7 +19,7 @@ export const TRANSLATIONS = {
     // Home page
     heroHeading: "Find the right",
     heroSubheading: "next step.",
-    heroSubtitle: "Harbor matches people experiencing housing insecurity with realistic nearby resources — ranked by urgency, transportation, language, family needs, and accessibility.",
+    heroSubtitle: "Harbor matches people experiencing housing insecurity with realistic nearby resources, ranked by urgency, transportation, language, family needs, and accessibility.",
     whatWeMatch: "What we match",
     matchingTitle: "Matching Solutions That Actually Help",
     howItWorks: "How it works",
@@ -28,7 +28,7 @@ export const TRANSLATIONS = {
     ctaTitle: "Let's create a plan together.",
     ctaBody: "No account required. You choose what to share. Call to confirm before going.",
     homeFeatures: [
-      { heading: "Help for tonight\nor next week", body: "We surface options based on when you need them — emergency beds, same-day services, or longer-term planning." },
+      { heading: "Help for tonight\nor next week", body: "We surface options based on when you need them: emergency beds, same-day services, or longer-term planning." },
       { heading: "Only what\nyou can reach", body: "Filter by walking, transit, car, or no transportation. We never show you places you can't get to." },
       { heading: "No account,\nno judgment", body: "Your answers stay in your browser. Nothing is stored on a server. You choose exactly what to share." },
       { heading: "Skip repeating\nyour story", body: "A one-tap outreach summary lets workers advocate for you without asking you to start over." },
@@ -40,9 +40,9 @@ export const TRANSLATIONS = {
       "We support outreach workers, too",
     ],
     howSteps: [
-      { num: "01", title: "Answer a few questions", body: "Tell us what you need, where you are, and what constraints matter — pets, ID, language, access." },
+      { num: "01", title: "Answer a few questions", body: "Tell us what you need, where you are, and what constraints matter: pets, ID, language, and access." },
       { num: "02", title: "See ranked options", body: "Resources are scored on a match algorithm that weighs dozens of factors, not just distance." },
-      { num: "03", title: "Get a clear action plan", body: "Who to call, what to bring, what to say — plus a backup if the first option is full." },
+      { num: "03", title: "Get a clear action plan", body: "Who to call, what to bring, and what to say. Plus a backup if the first option is full." },
     ],
 
     // Intake page header
@@ -101,7 +101,7 @@ export const TRANSLATIONS = {
       "Need transportation help": "I need a ride to get there",
     },
     importantNeeds: "Any important needs?",
-    importantNeedsSub: "Select all that apply — this helps us find options that truly fit.",
+    importantNeedsSub: "Select all that apply. This helps us find options that truly fit.",
     constraints: {
       hasPet: "I have a pet",
       hasChildren: "I have children or family with me",
@@ -141,7 +141,7 @@ export const TRANSLATIONS = {
     checkHoursLabel: "Check tonight's hours",
     googleMapsLabel: "Google Maps",
     travelLabels: {
-      needHelp: "Walking route shown — transportation help was selected",
+      needHelp: "Walking route shown (transportation help selected)",
       transit: "Fastest public transit route",
       driving: "Fastest driving route",
       walking: "Fastest walking route",
@@ -214,7 +214,7 @@ export const TRANSLATIONS = {
 
     heroHeading: "Encuentra el paso",
     heroSubheading: "correcto ahora.",
-    heroSubtitle: "Harbor conecta a personas con inseguridad habitacional con recursos cercanos y realistas — clasificados por urgencia, transporte, idioma, necesidades familiares y accesibilidad.",
+    heroSubtitle: "Harbor conecta a personas con inseguridad habitacional con recursos cercanos y realistas, clasificados por urgencia, transporte, idioma, necesidades familiares y accesibilidad.",
     whatWeMatch: "Lo que emparejamos",
     matchingTitle: "Soluciones que realmente ayudan",
     howItWorks: "Cómo funciona",
@@ -223,7 +223,7 @@ export const TRANSLATIONS = {
     ctaTitle: "Creemos un plan juntos.",
     ctaBody: "No se necesita cuenta. Tú eliges qué compartir. Llama para confirmar antes de ir.",
     homeFeatures: [
-      { heading: "Ayuda para esta\nnoche o esta semana", body: "Mostramos opciones según cuándo las necesitas — camas de emergencia, servicios del mismo día o planificación a largo plazo." },
+      { heading: "Ayuda para esta\nnoche o esta semana", body: "Mostramos opciones según cuándo las necesitas: camas de emergencia, servicios del mismo día o planificación a largo plazo." },
       { heading: "Solo lo que\npuedes alcanzar", body: "Filtra por caminar, transporte público, auto o sin transporte. Nunca te mostramos lugares a los que no puedes llegar." },
       { heading: "Sin cuenta,\nsin juicio", body: "Tus respuestas permanecen en tu navegador. Nada se almacena en un servidor. Tú decides qué compartir." },
       { heading: "Salta repetir\ntu historia", body: "Un resumen de alcance te permite que los trabajadores aboguen por ti sin pedirte que empieces de nuevo." },
@@ -235,9 +235,9 @@ export const TRANSLATIONS = {
       "También apoyamos a los trabajadores de alcance",
     ],
     howSteps: [
-      { num: "01", title: "Responde algunas preguntas", body: "Dinos qué necesitas, dónde estás y qué restricciones importan — mascotas, ID, idioma, acceso." },
+      { num: "01", title: "Responde algunas preguntas", body: "Dinos qué necesitas, dónde estás y qué restricciones importan: mascotas, ID, idioma y acceso." },
       { num: "02", title: "Ver opciones clasificadas", body: "Los recursos se puntúan con un algoritmo que pondera docenas de factores, no solo la distancia." },
-      { num: "03", title: "Obtén un plan de acción claro", body: "A quién llamar, qué traer, qué decir — más un respaldo si la primera opción está llena." },
+      { num: "03", title: "Obtén un plan de acción claro", body: "A quién llamar, qué traer y qué decir. Más un respaldo si la primera opción está llena." },
     ],
 
     navigatorLabel: "Navegador",
@@ -291,7 +291,7 @@ export const TRANSLATIONS = {
       "Need transportation help": "Necesito que me lleven",
     },
     importantNeeds: "¿Alguna necesidad importante?",
-    importantNeedsSub: "Selecciona todo lo que aplique — esto nos ayuda a encontrar opciones que realmente se adapten.",
+    importantNeedsSub: "Selecciona todo lo que aplique. Esto nos ayuda a encontrar opciones que realmente se adapten.",
     constraints: {
       hasPet: "Tengo una mascota",
       hasChildren: "Tengo niños o familia conmigo",
@@ -328,7 +328,7 @@ export const TRANSLATIONS = {
     notOpenTonightLabel: "No abierto esta noche",
     checkHoursLabel: "Verificar horarios esta noche",
     googleMapsLabel: "Google Maps",
-    travelLabels: { needHelp: "Ruta a pie — se seleccionó ayuda de transporte", transit: "Ruta de transporte público más rápida", driving: "Ruta en carro más rápida", walking: "Ruta a pie más rápida" },
+    travelLabels: { needHelp: "Ruta a pie (ayuda de transporte seleccionada)", transit: "Ruta de transporte público más rápida", driving: "Ruta en carro más rápida", walking: "Ruta a pie más rápida" },
     openMapBtn: "Abrir mapa",
     fastestRouteBtn: "Ruta más rápida",
     createPlanBtn: "Crear plan de acción",
@@ -356,7 +356,7 @@ export const TRANSLATIONS = {
 
     heroHeading: "Tìm bước đi",
     heroSubheading: "đúng tiếp theo.",
-    heroSubtitle: "Harbor kết nối những người có hoàn cảnh bất ổn về nhà ở với các nguồn lực thực tế gần đó — được xếp hạng theo mức độ khẩn cấp, phương tiện, ngôn ngữ, nhu cầu gia đình và khả năng tiếp cận.",
+    heroSubtitle: "Harbor kết nối những người có hoàn cảnh bất ổn về nhà ở với các nguồn lực thực tế gần đó, được xếp hạng theo mức độ khẩn cấp, phương tiện, ngôn ngữ, nhu cầu gia đình và khả năng tiếp cận.",
     whatWeMatch: "Những gì chúng tôi kết hợp",
     matchingTitle: "Giải pháp phù hợp thực sự giúp ích",
     howItWorks: "Cách thức hoạt động",
@@ -365,7 +365,7 @@ export const TRANSLATIONS = {
     ctaTitle: "Hãy cùng tạo một kế hoạch.",
     ctaBody: "Không cần tài khoản. Bạn chọn những gì muốn chia sẻ. Hãy gọi để xác nhận trước khi đến.",
     homeFeatures: [
-      { heading: "Trợ giúp tối nay\nhoặc tuần tới", body: "Chúng tôi hiển thị các tùy chọn dựa trên khi bạn cần — giường khẩn cấp, dịch vụ trong ngày hoặc lập kế hoạch dài hạn." },
+      { heading: "Trợ giúp tối nay\nhoặc tuần tới", body: "Chúng tôi hiển thị các tùy chọn dựa trên khi bạn cần: giường khẩn cấp, dịch vụ trong ngày hoặc lập kế hoạch dài hạn." },
       { heading: "Chỉ những gì\nbạn có thể đến", body: "Lọc theo đi bộ, phương tiện công cộng, xe hơi hoặc không có phương tiện. Chúng tôi không hiển thị nơi bạn không thể đến." },
       { heading: "Không tài khoản,\nkhông phán xét", body: "Câu trả lời của bạn được lưu trong trình duyệt. Không có gì được lưu trên máy chủ. Bạn chọn những gì muốn chia sẻ." },
       { heading: "Không cần\nkể lại câu chuyện", body: "Tóm tắt tiếp cận một chạm cho phép nhân viên hỗ trợ bạn mà không yêu cầu bạn bắt đầu lại." },
@@ -377,9 +377,9 @@ export const TRANSLATIONS = {
       "Chúng tôi cũng hỗ trợ nhân viên cộng đồng",
     ],
     howSteps: [
-      { num: "01", title: "Trả lời một vài câu hỏi", body: "Cho chúng tôi biết bạn cần gì, bạn ở đâu và những hạn chế nào quan trọng — thú cưng, ID, ngôn ngữ, tiếp cận." },
+      { num: "01", title: "Trả lời một vài câu hỏi", body: "Cho chúng tôi biết bạn cần gì, bạn ở đâu và những hạn chế nào quan trọng: thú cưng, ID, ngôn ngữ và tiếp cận." },
       { num: "02", title: "Xem các tùy chọn được xếp hạng", body: "Tài nguyên được tính điểm trên thuật toán xem xét hàng chục yếu tố, không chỉ khoảng cách." },
-      { num: "03", title: "Nhận kế hoạch hành động rõ ràng", body: "Ai cần gọi, cần mang gì, nói gì — cộng với phương án dự phòng nếu tùy chọn đầu tiên đầy." },
+      { num: "03", title: "Nhận kế hoạch hành động rõ ràng", body: "Ai cần gọi, cần mang gì và nói gì. Cộng với phương án dự phòng nếu tùy chọn đầu tiên đầy." },
     ],
 
     navigatorLabel: "Điều Hướng",
@@ -433,7 +433,7 @@ export const TRANSLATIONS = {
       "Need transportation help": "Tôi cần được đưa đến",
     },
     importantNeeds: "Bạn có nhu cầu đặc biệt nào không?",
-    importantNeedsSub: "Chọn tất cả những gì áp dụng — giúp chúng tôi tìm các lựa chọn phù hợp thực sự.",
+    importantNeedsSub: "Chọn tất cả những gì áp dụng. Điều này giúp chúng tôi tìm các lựa chọn phù hợp thực sự.",
     constraints: {
       hasPet: "Tôi có thú cưng",
       hasChildren: "Tôi có trẻ em hoặc gia đình đi cùng",
@@ -470,7 +470,7 @@ export const TRANSLATIONS = {
     notOpenTonightLabel: "Không mở tối nay",
     checkHoursLabel: "Kiểm tra giờ tối nay",
     googleMapsLabel: "Google Maps",
-    travelLabels: { needHelp: "Tuyến đi bộ — đã chọn hỗ trợ đi lại", transit: "Tuyến công cộng nhanh nhất", driving: "Tuyến xe hơi nhanh nhất", walking: "Tuyến đi bộ nhanh nhất" },
+    travelLabels: { needHelp: "Tuyến đi bộ (đã chọn hỗ trợ đi lại)", transit: "Tuyến công cộng nhanh nhất", driving: "Tuyến xe hơi nhanh nhất", walking: "Tuyến đi bộ nhanh nhất" },
     openMapBtn: "Mở bản đồ",
     fastestRouteBtn: "Tuyến nhanh nhất",
     createPlanBtn: "Tạo kế hoạch hành động",
@@ -498,7 +498,7 @@ export const TRANSLATIONS = {
 
     heroHeading: "找到正确的",
     heroSubheading: "下一步。",
-    heroSubtitle: "Harbor将面临住房不稳定的人与现实的附近资源匹配 — 按紧急程度、交通、语言、家庭需求和无障碍性排名。",
+    heroSubtitle: "Harbor将面临住房不稳定的人与现实的附近资源匹配，按紧急程度、交通、语言、家庭需求和无障碍性排名。",
     whatWeMatch: "我们匹配的内容",
     matchingTitle: "真正有帮助的匹配解决方案",
     howItWorks: "工作原理",
@@ -507,7 +507,7 @@ export const TRANSLATIONS = {
     ctaTitle: "让我们一起制定计划。",
     ctaBody: "无需账户。您选择分享什么。去之前请致电确认。",
     homeFeatures: [
-      { heading: "今晚或下周\n的帮助", body: "我们根据您需要的时间显示选项 — 紧急床位、当天服务或长期规划。" },
+      { heading: "今晚或下周\n的帮助", body: "我们根据您需要的时间显示选项：紧急床位、当天服务或长期规划。" },
       { heading: "只显示您\n能到达的地方", body: "按步行、公交、驾车或无交通工具筛选。我们从不显示您无法到达的地方。" },
       { heading: "无需账户，\n无需评判", body: "您的答案留在浏览器中。没有任何内容存储在服务器上。您选择分享什么。" },
       { heading: "跳过重复\n讲述您的故事", body: "一键外展摘要让工作人员为您辩护，而无需要求您重新开始。" },
@@ -519,9 +519,9 @@ export const TRANSLATIONS = {
       "我们也支持外展工作人员",
     ],
     howSteps: [
-      { num: "01", title: "回答几个问题", body: "告诉我们您需要什么、您在哪里，以及哪些限制条件重要 — 宠物、ID、语言、无障碍。" },
+      { num: "01", title: "回答几个问题", body: "告诉我们您需要什么、您在哪里，以及哪些限制条件重要：宠物、ID、语言和无障碍。" },
       { num: "02", title: "查看排名选项", body: "资源通过匹配算法评分，该算法考虑数十个因素，而不仅仅是距离。" },
-      { num: "03", title: "获得清晰的行动计划", body: "打给谁、带什么、说什么 — 以及第一选择满员时的备选方案。" },
+      { num: "03", title: "获得清晰的行动计划", body: "打给谁、带什么、说什么，以及第一选择满员时的备选方案。" },
     ],
 
     navigatorLabel: "导航",
@@ -575,7 +575,7 @@ export const TRANSLATIONS = {
       "Need transportation help": "我需要有人送我去",
     },
     importantNeeds: "有什么重要需求吗？",
-    importantNeedsSub: "请选择所有适用项 — 这有助于我们找到真正适合您的选项。",
+    importantNeedsSub: "请选择所有适用项。这有助于我们找到真正适合您的选项。",
     constraints: {
       hasPet: "我有宠物",
       hasChildren: "我带着孩子或家人",
@@ -612,7 +612,7 @@ export const TRANSLATIONS = {
     notOpenTonightLabel: "今晚不开放",
     checkHoursLabel: "查看今晚时间",
     googleMapsLabel: "Google 地图",
-    travelLabels: { needHelp: "显示步行路线 — 已选择交通帮助", transit: "最快公共交通路线", driving: "最快驾车路线", walking: "最快步行路线" },
+    travelLabels: { needHelp: "显示步行路线（已选择交通帮助）", transit: "最快公共交通路线", driving: "最快驾车路线", walking: "最快步行路线" },
     openMapBtn: "打开地图",
     fastestRouteBtn: "最快路线",
     createPlanBtn: "创建行动计划",
@@ -640,7 +640,7 @@ export const TRANSLATIONS = {
 
     heroHeading: "Hanapin ang tamang",
     heroSubheading: "susunod na hakbang.",
-    heroSubtitle: "Itinutugma ng Harbor ang mga taong nakakaranas ng kawalan ng tirahan sa mga makatotohanang mapagkukunan sa malapit — inayos ayon sa pagkamadali, transportasyon, wika, pangangailangan ng pamilya, at accessibility.",
+    heroSubtitle: "Itinutugma ng Harbor ang mga taong nakakaranas ng kawalan ng tirahan sa mga makatotohanang mapagkukunan sa malapit, inayos ayon sa pagkamadali, transportasyon, wika, pangangailangan ng pamilya, at accessibility.",
     whatWeMatch: "Ano ang aming itinuutugma",
     matchingTitle: "Mga Solusyong Tunay na Nakakatulong",
     howItWorks: "Paano ito gumagana",
@@ -649,7 +649,7 @@ export const TRANSLATIONS = {
     ctaTitle: "Gumawa tayo ng plano nang magkasama.",
     ctaBody: "Hindi kailangan ng account. Ikaw ang pumipili kung ano ang ishashare. Tumawag upang kumpirmahin bago pumunta.",
     homeFeatures: [
-      { heading: "Tulong ngayong gabi\no sa susunod na linggo", body: "Nagpapakita kami ng mga opsyon batay sa kung kailan mo kailangan ang mga ito — emergency na higaan, mga serbisyong araw din, o pangmatagalang pagpaplano." },
+      { heading: "Tulong ngayong gabi\no sa susunod na linggo", body: "Nagpapakita kami ng mga opsyon batay sa kung kailan mo kailangan ang mga ito: emergency na higaan, mga serbisyong araw din, o pangmatagalang pagpaplano." },
       { heading: "Ang tanging maaari\nmong maabot", body: "I-filter ayon sa paglalakad, pampublikong transportasyon, sasakyan, o walang transportasyon. Hindi namin ipinakikita ang mga lugar na hindi mo maabot." },
       { heading: "Walang account,\nwalang paghatol", body: "Ang iyong mga sagot ay nananatili sa iyong browser. Walang nakaimbak sa server. Ikaw ang pumipili ng ishashare." },
       { heading: "Laktawan ang\npag-uulit ng kwento", body: "Ang isang-tap na buod ng outreach ay nagbibigay-daan sa mga manggagawa na mag-advocate para sa iyo nang hindi ka hihingan na magsimula muli." },
@@ -661,9 +661,9 @@ export const TRANSLATIONS = {
       "Sinusuportahan din namin ang mga outreach worker",
     ],
     howSteps: [
-      { num: "01", title: "Sumagot sa ilang tanong", body: "Sabihin sa amin kung ano ang kailangan mo, nasaan ka, at kung anong mga hadlang ang mahalaga — alagang hayop, ID, wika, access." },
+      { num: "01", title: "Sumagot sa ilang tanong", body: "Sabihin sa amin kung ano ang kailangan mo, nasaan ka, at kung anong mga hadlang ang mahalaga: alagang hayop, ID, wika, at access." },
       { num: "02", title: "Tingnan ang mga rangkadong opsyon", body: "Ang mga mapagkukunan ay sinusukatán gamit ang isang algorithm na tinitimbang ang dose-dosenang kadahilanan, hindi lang ang distansya." },
-      { num: "03", title: "Makakuha ng malinaw na plano ng aksyon", body: "Sino ang tatawagan, ano ang dadalhin, ano ang sasabihin — kasama ang backup kung ang unang opsyon ay puno." },
+      { num: "03", title: "Makakuha ng malinaw na plano ng aksyon", body: "Sino ang tatawagan, ano ang dadalhin, at ano ang sasabihin. Kasama rin ang backup kung ang unang opsyon ay puno." },
     ],
 
     navigatorLabel: "Navigator",
@@ -717,7 +717,7 @@ export const TRANSLATIONS = {
       "Need transportation help": "Kailangan ko ng sakay para makarating doon",
     },
     importantNeeds: "Mayroon bang mahahalagang pangangailangan?",
-    importantNeedsSub: "Piliin lahat ng naaangkop — nakakatulong ito sa amin na mahanap ang mga opsyon na tunay na akma.",
+    importantNeedsSub: "Piliin lahat ng naaangkop. Nakakatulong ito sa amin na mahanap ang mga opsyon na tunay na akma.",
     constraints: {
       hasPet: "Mayroon akong alagang hayop",
       hasChildren: "Kasama ko ang mga bata o pamilya",
@@ -754,7 +754,7 @@ export const TRANSLATIONS = {
     notOpenTonightLabel: "Hindi bukas ngayong gabi",
     checkHoursLabel: "Suriin ang oras ngayong gabi",
     googleMapsLabel: "Google Maps",
-    travelLabels: { needHelp: "Ruta sa paglalakad — napili ang tulong sa transportasyon", transit: "Pinakamabilis na ruta sa pampublikong sasakyan", driving: "Pinakamabilis na ruta sa sasakyan", walking: "Pinakamabilis na ruta sa paglalakad" },
+    travelLabels: { needHelp: "Ruta sa paglalakad (napili ang tulong sa transportasyon)", transit: "Pinakamabilis na ruta sa pampublikong sasakyan", driving: "Pinakamabilis na ruta sa sasakyan", walking: "Pinakamabilis na ruta sa paglalakad" },
     openMapBtn: "Buksan ang mapa",
     fastestRouteBtn: "Pinakamabilis na ruta",
     createPlanBtn: "Gumawa ng plano ng aksyon",

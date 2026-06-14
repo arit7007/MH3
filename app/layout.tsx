@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "Harbor — Find the right next step, fast",
+  title: "Harbor: Find the right next step, fast",
   description:
     "Harbor matches people experiencing housing insecurity with realistic nearby resources based on urgency, transportation, documents, pets, language, family needs, and accessibility.",
 };

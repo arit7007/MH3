@@ -306,7 +306,7 @@ export default function OutreachPage() {
           <p className="section-label text-[10px]">AI intake parser</p>
           <h2 className="font-display text-xl font-bold text-brand-900">Parse an outreach note</h2>
           <p className="mt-1 text-base text-brand-700">
-            Type a short note in plain language — Harbor extracts a structured intake automatically.
+            Type a short note in plain language. Harbor will extract a structured intake automatically.
           </p>
         </div>
         <textarea

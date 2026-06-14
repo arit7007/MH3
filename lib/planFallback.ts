@@ -88,9 +88,9 @@ function buildMessage(
     lines.push(`Hi, I'm calling because I need ${intake.need.toLowerCase()} near ${intake.location}.`);
     if (intake.urgency === "Tonight") lines.push("I need help tonight.");
     else if (intake.urgency === "This week") lines.push("I need help within the next few days.");
-    if (intake.hasPet) lines.push("I have a pet with me — do you accept animals?");
-    if (intake.noId) lines.push("I don't have ID right now — is that okay for intake?");
-    if (intake.transportation === "Need transportation help") lines.push("I have no way to get there on my own — do you offer transportation or know who does?");
+    if (intake.hasPet) lines.push("I have a pet with me. Do you accept animals?");
+    if (intake.noId) lines.push("I don't have ID right now. Is that okay for intake?");
+    if (intake.transportation === "Need transportation help") lines.push("I have no way to get there on my own. Do you offer transportation, or do you know who does?");
     lines.push("Do you have space available, and is there anything specific I should bring?");
   }
 
