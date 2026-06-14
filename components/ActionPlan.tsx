@@ -63,21 +63,25 @@ export default function ActionPlan({ plan }: { plan: ActionPlanType }) {
       </PlanSection>
 
       <PlanSection
-        title="Message you can send"
+        title="What to say when you call"
         action={<CopyButton text={plan.messageScript} label="Copy" />}
       >
-        <p className="rounded-sm bg-brand-50 px-4 py-3 text-base text-brand-900">
-          {plan.messageScript}
-        </p>
+        <div className="rounded-sm bg-brand-50 px-4 py-3 space-y-2">
+          {plan.messageScript.split("\n").map((line, i) => (
+            <p key={i} className="text-base text-brand-900 leading-relaxed">{line}</p>
+          ))}
+        </div>
         {plan.spanishMessageScript && (
           <div className="mt-3 space-y-2">
             <div className="flex items-center justify-between">
               <span className="section-label text-[10px]">En español</span>
               <CopyButton text={plan.spanishMessageScript} label="Copiar" />
             </div>
-            <p className="rounded-sm bg-brand-50 px-4 py-3 text-base text-brand-900">
-              {plan.spanishMessageScript}
-            </p>
+            <div className="rounded-sm bg-brand-50 px-4 py-3 space-y-2">
+              {plan.spanishMessageScript.split("\n").map((line, i) => (
+                <p key={i} className="text-base text-brand-900 leading-relaxed">{line}</p>
+              ))}
+            </div>
           </div>
         )}
       </PlanSection>

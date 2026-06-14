@@ -74,18 +74,27 @@ function buildMessage(
   top: MatchResult,
   spanish: boolean
 ): string {
-  const details: string[] = [];
-  if (intake.hasPet) details.push(spanish ? "tengo una mascota" : "I have a pet");
-  if (intake.transportation === "Walking" || intake.transportation === "Need transportation help")
-    details.push(spanish ? "no tengo carro" : "I do not have a car");
-  if (intake.noId) details.push(spanish ? "no tengo identificación" : "I do not have ID");
-
-  const detailText = details.length ? `, ${joinList(details, spanish)}` : "";
+  const lines: string[] = [];
 
   if (spanish) {
-    return `Hola, estoy buscando ${needEsp(intake)} en ${intake.location}${detailText}. ¿Tienen espacio disponible ${intake.urgency === "Tonight" ? "esta noche" : "esta semana"}${intake.hasPet ? " y aceptan mascotas" : ""}?`;
+    lines.push(`Hola, estoy buscando ${needEsp(intake)} cerca de ${intake.location}.`);
+    if (intake.urgency === "Tonight") lines.push("Necesito ayuda esta noche.");
+    else if (intake.urgency === "This week") lines.push("Necesito ayuda esta semana.");
+    if (intake.hasPet) lines.push("Tengo una mascota. ¿Aceptan mascotas?");
+    if (intake.noId) lines.push("En este momento no tengo identificación. ¿Requieren ID para entrar?");
+    if (intake.transportation === "Need transportation help") lines.push("No tengo forma de llegar. ¿Ofrecen transporte o pueden referirme a alguien?");
+    lines.push(`¿Tienen espacio disponible y qué debo traer?`);
+  } else {
+    lines.push(`Hi, I'm calling because I need ${intake.need.toLowerCase()} near ${intake.location}.`);
+    if (intake.urgency === "Tonight") lines.push("I need help tonight.");
+    else if (intake.urgency === "This week") lines.push("I need help within the next few days.");
+    if (intake.hasPet) lines.push("I have a pet with me — do you accept animals?");
+    if (intake.noId) lines.push("I don't have ID right now — is that okay for intake?");
+    if (intake.transportation === "Need transportation help") lines.push("I have no way to get there on my own — do you offer transportation or know who does?");
+    lines.push("Do you have space available, and is there anything specific I should bring?");
   }
-  return `Hi, I'm looking for ${intake.need.toLowerCase()} in ${intake.location}${detailText}. Do you have ${intake.urgency === "Tonight" ? "walk-in space available tonight" : "space available"}${intake.hasPet ? ", and do you accept pets" : ""}?`;
+
+  return lines.join("\n");
 }
 
 function needEsp(intake: Intake): string {
