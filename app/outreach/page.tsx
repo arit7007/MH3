@@ -9,6 +9,7 @@ import PrivacyBanner from "@/components/PrivacyBanner";
 
 export default function OutreachPage() {
   const [requests, setRequests] = useState<ContactRequest[]>([]);
+  const [fadingIds, setFadingIds] = useState<Set<string>>(new Set());
   const [note, setNote] = useState(
     "Maria needs shelter tonight near Santa Clara. She has a dog, no ID, no car, and prefers Spanish."
   );
@@ -21,8 +22,16 @@ export default function OutreachPage() {
   }, []);
 
   function handleMarkContacted(id: string) {
-    markContacted(id);
-    setRequests(loadContactRequests());
+    setFadingIds((prev) => new Set(prev).add(id));
+    setTimeout(() => {
+      markContacted(id);
+      setRequests(loadContactRequests());
+      setFadingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    }, 500);
   }
 
   async function parseNote() {
@@ -82,10 +91,11 @@ export default function OutreachPage() {
           </div>
         ) : (
           <div className="space-y-3">
-            {requests.map((r) => (
+            {requests.filter((r) => r.status === "new" || fadingIds.has(r.id)).map((r) => (
               <ContactRequestCard
                 key={r.id}
                 request={r}
+                fading={fadingIds.has(r.id)}
                 onMarkContacted={() => handleMarkContacted(r.id)}
               />
             ))}
@@ -141,9 +151,11 @@ export default function OutreachPage() {
 
 function ContactRequestCard({
   request,
+  fading,
   onMarkContacted,
 }: {
   request: ContactRequest;
+  fading?: boolean;
   onMarkContacted: () => void;
 }) {
   const isNew = request.status === "new";
@@ -158,8 +170,8 @@ function ContactRequestCard({
 
   return (
     <div
-      className={`rounded-sm border bg-white p-5 space-y-4 ${
-        isNew ? "border-brand-400" : "border-brand-200 opacity-70"
+      className={`rounded-sm border bg-white p-5 space-y-4 transition-opacity duration-500 ${
+        fading ? "opacity-0" : isNew ? "border-brand-400" : "border-brand-200 opacity-70"
       }`}
     >
       <div className="flex items-start justify-between gap-4">
