@@ -14,7 +14,6 @@ const NEED_OPTIONS: { value: Need; desc: string }[] = [
   { value: "Medical help", desc: "Health care or clinic" },
   { value: "ID/document help", desc: "Replace lost ID or docs" },
   { value: "Recovery support", desc: "Drug, alcohol, or mental health recovery" },
-  { value: "Transportation help", desc: "Rides or transit passes" },
 ];
 
 const URGENCY_OPTIONS: { value: Urgency; label: string; sub: string }[] = [
