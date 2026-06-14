@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Harbor — Find the right next step, fast",
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen font-sans antialiased">
-        <Header />
-        <main className="mx-auto w-full max-w-5xl px-4 pb-24">{children}</main>
+        <LanguageProvider>
+          <Header />
+          <main className="mx-auto w-full max-w-5xl px-4 pb-24">{children}</main>
+        </LanguageProvider>
       </body>
     </html>
   );

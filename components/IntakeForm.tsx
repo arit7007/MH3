@@ -6,27 +6,26 @@ import { Intake, Need, Transportation, Urgency } from "@/lib/types";
 import { saveIntake } from "@/lib/store";
 import { saveContactRequest } from "@/lib/contactRequests";
 import { mariaIntake } from "@/lib/demoCases";
+import { useLanguage } from "@/lib/LanguageContext";
 
-const NEED_OPTIONS: { value: Need; desc: string }[] = [
-  { value: "Shelter", desc: "Safe place to sleep" },
-  { value: "Food", desc: "Meals or food assistance" },
-  { value: "Shower/laundry", desc: "Hygiene facilities" },
-  { value: "Medical help", desc: "Health care or clinic" },
-  { value: "ID/document help", desc: "Replace lost ID or docs" },
-  { value: "Recovery support", desc: "Drug, alcohol, or mental health recovery" },
+type DisplayNeed = Exclude<Need, "Transportation help">;
+
+const NEED_KEYS: DisplayNeed[] = [
+  "Shelter",
+  "Food",
+  "Shower/laundry",
+  "Medical help",
+  "ID/document help",
+  "Recovery support",
 ];
 
-const URGENCY_OPTIONS: { value: Urgency; label: string; sub: string }[] = [
-  { value: "Tonight", label: "Tonight", sub: "I need help right now" },
-  { value: "This week", label: "This week", sub: "Within the next few days" },
-  { value: "Planning ahead", label: "Planning ahead", sub: "Getting ready for later" },
-];
+const URGENCY_KEYS: Urgency[] = ["Tonight", "This week", "Planning ahead"];
 
-const TRANSPORT_OPTIONS: { value: Transportation; label: string }[] = [
-  { value: "Walking", label: "Walking" },
-  { value: "Public transit", label: "Public transit" },
-  { value: "Car", label: "Car" },
-  { value: "Need transportation help", label: "I need a ride to get there" },
+const TRANSPORT_KEYS: Transportation[] = [
+  "Walking",
+  "Public transit",
+  "Car",
+  "Need transportation help",
 ];
 
 type BooleanIntakeKey =
@@ -37,13 +36,13 @@ type BooleanIntakeKey =
   | "wheelchairAccess"
   | "womenOrFamilySafe";
 
-const NEED_LABELS: { key: BooleanIntakeKey; label: string }[] = [
-  { key: "hasPet", label: "I have a pet" },
-  { key: "hasChildren", label: "I have children or family with me" },
-  { key: "noId", label: "I don't have ID right now" },
-  { key: "prefersSpanish", label: "I prefer Spanish" },
-  { key: "wheelchairAccess", label: "I need wheelchair access" },
-  { key: "womenOrFamilySafe", label: "I need women-only or family-safe options" },
+const CONSTRAINT_KEYS: BooleanIntakeKey[] = [
+  "hasPet",
+  "hasChildren",
+  "noId",
+  "prefersSpanish",
+  "wheelchairAccess",
+  "womenOrFamilySafe",
 ];
 
 const defaultIntake: Intake = {
@@ -65,15 +64,6 @@ const defaultIntake: Intake = {
   contactPhone: "",
   contactEmail: "",
 };
-
-const steps = [
-  "What you need",
-  "Where & when",
-  "Getting there",
-  "Important needs",
-  "Your plan",
-  "Stay connected",
-];
 
 function OptionButton({
   active,
@@ -104,6 +94,7 @@ function OptionButton({
 
 export default function IntakeForm() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [intake, setIntake] = useState<Intake>(defaultIntake);
   const [step, setStep] = useState(0);
   const [typedLocation, setTypedLocation] = useState(defaultIntake.location);
@@ -166,7 +157,7 @@ export default function IntakeForm() {
       {/* Step indicator */}
       <div className="space-y-4">
         <div className="flex gap-1.5">
-          {steps.map((_, i) => (
+          {t.steps.map((_, i) => (
             <div
               key={i}
               className={`h-0.5 flex-1 rounded-full transition-all duration-300 ${
@@ -176,8 +167,8 @@ export default function IntakeForm() {
           ))}
         </div>
         <div className="flex items-baseline justify-between">
-          <p className="font-display text-sm italic text-brand-500">{steps[step]}</p>
-          <p className="section-label text-[10px]">{step + 1} / {steps.length}</p>
+          <p className="font-display text-sm italic text-brand-500">{t.steps[step]}</p>
+          <p className="section-label text-[10px]">{step + 1} / {t.steps.length}</p>
         </div>
       </div>
 
@@ -186,23 +177,23 @@ export default function IntakeForm() {
         <section className="space-y-6">
           <div>
             <h2 className="font-display text-2xl font-bold text-brand-900">
-              What do you need right now?
+              {t.whatDoYouNeed}
             </h2>
-            <p className="mt-1 text-sm text-brand-700">
-              Choose the one that fits best. You can change it later.
-            </p>
+            <p className="mt-1 text-sm text-brand-700">{t.whatDoYouNeedSub}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {NEED_OPTIONS.map((opt) => (
+            {NEED_KEYS.map((key) => (
               <OptionButton
-                key={opt.value}
-                active={intake.need === opt.value}
-                onClick={() => set("need", opt.value)}
+                key={key}
+                active={intake.need === key}
+                onClick={() => set("need", key)}
               >
                 <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                  {opt.value}
+                  {key}
                 </span>
-                <p className="mt-1 text-sm leading-snug text-brand-500">{opt.desc}</p>
+                <p className="mt-1 text-sm leading-snug text-brand-500">
+                  {t.needs[key]}
+                </p>
               </OptionButton>
             ))}
           </div>
@@ -213,7 +204,7 @@ export default function IntakeForm() {
       {step === 1 && (
         <section className="space-y-8">
           <div className="space-y-3">
-            <h2 className="font-display text-2xl font-bold text-brand-900">Where are you?</h2>
+            <h2 className="font-display text-2xl font-bold text-brand-900">{t.whereAreYou}</h2>
             <input
               className="field-input"
               value={intake.location}
@@ -227,7 +218,7 @@ export default function IntakeForm() {
                   currentCoordinates: null,
                 }));
               }}
-              placeholder="Santa Clara, CA"
+              placeholder={t.locationPlaceholder}
             />
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
@@ -235,7 +226,7 @@ export default function IntakeForm() {
                 className="text-sm font-semibold text-brand-600 underline decoration-dotted hover:text-brand-800 transition-colors"
                 onClick={useCurrentLocation}
               >
-                Use my current location
+                {t.useCurrentLocation}
               </button>
               {intake.useCurrentLocation && (
                 <button
@@ -250,7 +241,7 @@ export default function IntakeForm() {
                     }))
                   }
                 >
-                  Use typed address instead
+                  {t.useTypedAddress}
                 </button>
               )}
             </div>
@@ -259,16 +250,20 @@ export default function IntakeForm() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="font-display text-2xl font-bold text-brand-900">How urgent is this?</h2>
+            <h2 className="font-display text-2xl font-bold text-brand-900">{t.howUrgent}</h2>
             <div className="grid gap-3 sm:grid-cols-3">
-              {URGENCY_OPTIONS.map((u) => (
+              {URGENCY_KEYS.map((key) => (
                 <OptionButton
-                  key={u.value}
-                  active={intake.urgency === u.value}
-                  onClick={() => set("urgency", u.value)}
+                  key={key}
+                  active={intake.urgency === key}
+                  onClick={() => set("urgency", key)}
                 >
-                  <span className="block text-lg font-semibold leading-tight sm:text-xl">{u.label}</span>
-                  <span className="mt-1 block text-sm leading-snug text-brand-500">{u.sub}</span>
+                  <span className="block text-lg font-semibold leading-tight sm:text-xl">
+                    {t.urgency[key].label}
+                  </span>
+                  <span className="mt-1 block text-sm leading-snug text-brand-500">
+                    {t.urgency[key].sub}
+                  </span>
                 </OptionButton>
               ))}
             </div>
@@ -280,19 +275,19 @@ export default function IntakeForm() {
       {step === 2 && (
         <section className="space-y-6">
           <div>
-            <h2 className="font-display text-2xl font-bold text-brand-900">How can you get there?</h2>
-            <p className="mt-1 text-sm text-brand-700">
-              We'll only show places you can realistically reach.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-brand-900">{t.howGetThere}</h2>
+            <p className="mt-1 text-sm text-brand-700">{t.howGetThereSub}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {TRANSPORT_OPTIONS.map((t) => (
+            {TRANSPORT_KEYS.map((key) => (
               <OptionButton
-                key={t.value}
-                active={intake.transportation === t.value}
-                onClick={() => set("transportation", t.value)}
+                key={key}
+                active={intake.transportation === key}
+                onClick={() => set("transportation", key)}
               >
-                <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.label}</span>
+                <span className="block text-lg font-semibold leading-tight sm:text-xl">
+                  {t.transport[key]}
+                </span>
               </OptionButton>
             ))}
           </div>
@@ -303,19 +298,19 @@ export default function IntakeForm() {
       {step === 3 && (
         <section className="space-y-6">
           <div>
-            <h2 className="font-display text-2xl font-bold text-brand-900">Any important needs?</h2>
-            <p className="mt-1 text-sm text-brand-700">
-              Select all that apply — this helps us find options that truly fit.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-brand-900">{t.importantNeeds}</h2>
+            <p className="mt-1 text-sm text-brand-700">{t.importantNeedsSub}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {NEED_LABELS.map((item) => (
+            {CONSTRAINT_KEYS.map((key) => (
               <OptionButton
-                key={item.key}
-                active={Boolean(intake[item.key])}
-                onClick={() => toggle(item.key)}
+                key={key}
+                active={Boolean(intake[key])}
+                onClick={() => toggle(key)}
               >
-                <span className="block text-lg font-medium leading-tight sm:text-xl">{item.label}</span>
+                <span className="block text-lg font-medium leading-tight sm:text-xl">
+                  {t.constraints[key]}
+                </span>
               </OptionButton>
             ))}
           </div>
@@ -326,21 +321,17 @@ export default function IntakeForm() {
       {step === 4 && (
         <section className="space-y-6">
           <div>
-            <h2 className="font-display text-2xl font-bold text-brand-900">
-              Would you like a simple action plan?
-            </h2>
-            <p className="mt-1 text-sm text-brand-700">
-              We'll create a step-by-step guide with what to bring and who to call.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-brand-900">{t.wantPlan}</h2>
+            <p className="mt-1 text-sm text-brand-700">{t.wantPlanSub}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <OptionButton active={intake.wantsPlan} onClick={() => set("wantsPlan", true)}>
-              <span className="block text-lg font-semibold leading-tight sm:text-xl">Yes, create a plan</span>
-              <span className="mt-1 block text-sm text-brand-500">Recommended</span>
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.yesPlan}</span>
+              <span className="mt-1 block text-sm text-brand-500">{t.yesPlanSub}</span>
             </OptionButton>
             <OptionButton active={!intake.wantsPlan} onClick={() => set("wantsPlan", false)}>
-              <span className="block text-lg font-semibold leading-tight sm:text-xl">Just show options</span>
-              <span className="mt-1 block text-sm text-brand-500">Skip the plan</span>
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.noPlan}</span>
+              <span className="mt-1 block text-sm text-brand-500">{t.noPlanSub}</span>
             </OptionButton>
           </div>
         </section>
@@ -350,36 +341,23 @@ export default function IntakeForm() {
       {step === 5 && (
         <section className="space-y-6">
           <div>
-            <h2 className="font-display text-2xl font-bold text-brand-900">
-              Want a shelter worker to contact you?
-            </h2>
-            <p className="mt-1 text-sm text-brand-700">
-              Local outreach workers can reach out directly to help you get placed faster.
-              This is completely optional.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-brand-900">{t.wantContact}</h2>
+            <p className="mt-1 text-sm text-brand-700">{t.wantContactSub}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <OptionButton
               active={intake.wantsContact === true}
               onClick={() => set("wantsContact", true)}
             >
-              <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                Yes, contact me
-              </span>
-              <span className="mt-1 block text-sm text-brand-500">
-                A worker will reach out to help
-              </span>
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.yesContact}</span>
+              <span className="mt-1 block text-sm text-brand-500">{t.yesContactSub}</span>
             </OptionButton>
             <OptionButton
               active={intake.wantsContact === false}
               onClick={() => set("wantsContact", false)}
             >
-              <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                No, keep it private
-              </span>
-              <span className="mt-1 block text-sm text-brand-500">
-                I'll reach out myself
-              </span>
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.noContact}</span>
+              <span className="mt-1 block text-sm text-brand-500">{t.noContactSub}</span>
             </OptionButton>
           </div>
 
@@ -387,7 +365,7 @@ export default function IntakeForm() {
             <div className="space-y-4 rounded-sm border border-brand-200 bg-white p-5">
               <div className="space-y-1.5">
                 <label className="block text-sm font-semibold text-brand-900" htmlFor="contact-phone">
-                  Phone number
+                  {t.phoneLabel}
                 </label>
                 <input
                   id="contact-phone"
@@ -401,7 +379,7 @@ export default function IntakeForm() {
               </div>
               <div className="space-y-1.5">
                 <label className="block text-sm font-semibold text-brand-900" htmlFor="contact-email">
-                  Email <span className="font-normal text-brand-400">(optional)</span>
+                  {t.emailLabel} <span className="font-normal text-brand-400">{t.emailOptional}</span>
                 </label>
                 <input
                   id="contact-email"
@@ -413,9 +391,7 @@ export default function IntakeForm() {
                   autoComplete="email"
                 />
               </div>
-              <p className="text-xs text-brand-400">
-                Only shared with verified local outreach workers. You can ask them to delete it at any time.
-              </p>
+              <p className="text-xs text-brand-400">{t.contactPrivacy}</p>
             </div>
           )}
         </section>
@@ -426,16 +402,16 @@ export default function IntakeForm() {
         <div className="flex gap-3">
           {step > 0 && (
             <button className="btn-secondary py-2.5" onClick={() => setStep((s) => s - 1)}>
-              ← Back
+              {t.back}
             </button>
           )}
-          {step < steps.length - 1 ? (
+          {step < t.steps.length - 1 ? (
             <button className="btn-primary py-2.5" onClick={() => setStep((s) => s + 1)}>
-              Continue →
+              {t.continue}
             </button>
           ) : (
             <button className="btn-primary py-2.5" onClick={() => submit(intake)}>
-              See my options →
+              {t.seeOptions}
             </button>
           )}
         </div>
@@ -443,7 +419,7 @@ export default function IntakeForm() {
           className="text-xs text-brand-400 underline decoration-dotted hover:text-brand-600 transition-colors"
           onClick={useMaria}
         >
-          Use demo persona
+          {t.demoPersona}
         </button>
       </div>
     </div>

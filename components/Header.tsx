@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { hasSupabaseEnv } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default async function Header() {
   let workerEmail: string | undefined;
@@ -33,6 +34,9 @@ export default async function Header() {
             </Link>
           </nav>
         )}
+
+        {/* Language switcher */}
+        <LanguageSwitcher />
 
         {/* CTA */}
         <div className="flex items-center gap-3">

@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function DoorButton() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [phase, setPhase] = useState<"idle" | "open">("idle");
 
   function handleDoor() {
@@ -158,7 +160,7 @@ export default function DoorButton() {
 
         {/* Hint text */}
         <p className="mt-8 font-display text-2xl font-bold italic text-brand-600 sm:text-3xl">
-          Open the door to find out more
+          {t.doorHint}
         </p>
       </div>
     </>

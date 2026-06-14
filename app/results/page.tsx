@@ -9,9 +9,11 @@ import { loadIntake } from "@/lib/store";
 import { getResources } from "@/lib/store";
 import ResourceCard from "@/components/ResourceCard";
 import PrivacyBanner from "@/components/PrivacyBanner";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ResultsPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [intake, setIntake] = useState<Intake | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [resources, setResources] = useState<Resource[]>([]);
@@ -71,14 +73,14 @@ export default function ResultsPage() {
     <div className="space-y-8 pt-12">
       <div className="flex flex-wrap items-start justify-between gap-4 border-b border-brand-200 pb-6">
         <div>
-          <p className="section-label">Results</p>
-          <h1 className="font-display text-4xl font-bold text-brand-900">
-            Options that <em className="italic text-brand-500">may fit</em>
+          <p className="section-label">{t.results}</p>
+          <h1 className="font-display text-4xl font-bold italic text-brand-900">
+            {t.optionsMayFit}
           </h1>
           <p className="mt-2 text-base text-brand-700">{summary}</p>
         </div>
         <Link href="/intake" className="btn-secondary py-2.5 text-sm self-end">
-          Change answers
+          {t.changeAnswers}
         </Link>
       </div>
 
@@ -88,15 +90,15 @@ export default function ResultsPage() {
         <div className="flex flex-col items-center gap-4 py-20 text-center">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand-200 border-t-brand-500" />
           <p className="font-display text-lg italic text-brand-600">
-            Finding resources near {intake.location}…
+            {t.findingResources} {intake.location}…
           </p>
-          <p className="text-sm text-brand-400">This takes a few seconds</p>
+          <p className="text-sm text-brand-400">{t.takesFewSeconds}</p>
         </div>
       ) : (
         <>
           {resourceSource === "ai" && (
             <p className="text-xs text-brand-400">
-              Resources found by AI for {intake.location} · Always call ahead to confirm availability
+              {t.aiResourcesNote} {intake.location} {t.alwaysCallAhead}
             </p>
           )}
           <div className="space-y-4">
