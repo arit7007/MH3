@@ -189,7 +189,7 @@ export default function IntakeForm() {
                 onClick={() => set("need", key)}
               >
                 <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                  {key}
+                  {t.needLabels[key]}
                 </span>
                 <p className="mt-1 text-sm leading-snug text-brand-500">
                   {t.needs[key]}

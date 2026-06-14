@@ -1,48 +1,12 @@
+"use client";
+
 import PrivacyBanner from "@/components/PrivacyBanner";
 import DoorButton from "@/components/DoorButton";
-
-const features = [
-  {
-    label: "Urgency-aware",
-    heading: "Help for tonight\nor next week",
-    body: "We surface options based on when you need them — emergency beds, same-day services, or longer-term planning.",
-  },
-  {
-    label: "Transportation-first",
-    heading: "Only what\nyou can reach",
-    body: "Filter by walking, transit, car, or no transportation. We never show you places you can't get to.",
-  },
-  {
-    label: "Fully private",
-    heading: "No account,\nno judgment",
-    body: "Your answers stay in your browser. Nothing is stored on a server. You choose exactly what to share.",
-  },
-  {
-    label: "Warm handoff",
-    heading: "Skip repeating\nyour story",
-    body: "A one-tap outreach summary lets workers advocate for you without asking you to start over.",
-  },
-];
-
-const steps = [
-  {
-    num: "01",
-    title: "Answer a few questions",
-    body: "Tell us what you need, where you are, and what constraints matter — pets, ID, language, access.",
-  },
-  {
-    num: "02",
-    title: "See ranked options",
-    body: "Resources are scored on a match algorithm that weighs dozens of factors, not just distance.",
-  },
-  {
-    num: "03",
-    title: "Get a clear action plan",
-    body: "Who to call, what to bring, what to say — plus a backup if the first option is full.",
-  },
-];
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function LandingPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="-mx-4">
       {/* ── Hero ── */}
@@ -51,16 +15,14 @@ export default function LandingPage() {
           <div className="space-y-8 text-center">
             <div className="space-y-2">
               <h1 className="font-display text-5xl font-bold leading-[1.1] text-brand-900 sm:text-6xl">
-                Find the right<br />
+                {t.heroHeading}<br />
                 <span className="font-display italic text-brand-500">
-                  next step.
+                  {t.heroSubheading}
                 </span>
               </h1>
             </div>
             <p className="mx-auto max-w-2xl text-lg leading-relaxed text-brand-700">
-              Harbor matches people experiencing housing insecurity with
-              realistic nearby resources — ranked by urgency, transportation,
-              language, family needs, and accessibility.
+              {t.heroSubtitle}
             </p>
             <div className="flex justify-center">
               <DoorButton />
@@ -78,16 +40,16 @@ export default function LandingPage() {
         <div className="mx-auto max-w-5xl space-y-14">
           <div className="text-center">
             <div className="divider">
-              <span className="section-label">What we match</span>
+              <span className="section-label">{t.whatWeMatch}</span>
             </div>
             <h2 className="mt-4 font-display text-3xl font-bold text-brand-900 sm:text-4xl">
-              Matching Solutions That <em className="italic">Actually Help</em>
+              {t.matchingTitle}
             </h2>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((f) => (
-              <div key={f.label} className="space-y-3 text-center">
+            {t.homeFeatures.map((f, i) => (
+              <div key={i} className="space-y-3 text-center">
                 <h3 className="font-display text-lg font-bold leading-snug text-brand-900 whitespace-pre-line">
                   {f.heading}
                 </h3>
@@ -108,17 +70,15 @@ export default function LandingPage() {
             {/* Left — decorative blush panel */}
             <div className="hidden rounded-sm bg-brand-100 p-12 lg:block">
               <p className="font-display text-5xl font-bold leading-tight text-brand-900">
-                We're more than<br />
-                <em className="italic text-brand-500">a directory.</em>
+                {t.weAreMore.split("directory")[0]}
+                <br />
+                <em className="italic text-brand-500">
+                  {t.weAreMore.includes("directory") ? "a directory." : t.weAreMore}
+                </em>
               </p>
               <ul className="mt-8 space-y-4">
-                {[
-                  "We rank by what matters to your situation",
-                  "We factor in pets, ID, language, and safety",
-                  "We generate a plan, not just a list",
-                  "We support outreach workers, too",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-base text-brand-700">
+                {t.weAreMoreBullets.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-base text-brand-700">
                     <span className="mt-0.5 text-brand-400">◆</span>
                     <span>{item}</span>
                   </li>
@@ -130,22 +90,21 @@ export default function LandingPage() {
             <div className="space-y-10">
               <div>
                 <div className="divider">
-                  <span className="section-label">How it works</span>
+                  <span className="section-label">{t.howItWorks}</span>
                 </div>
                 <h2 className="mt-4 font-display text-3xl font-bold text-brand-900 sm:text-4xl">
-                  Three steps to a{" "}
-                  <em className="italic text-brand-500">real plan</em>
+                  {t.threeStepsTitle}
                 </h2>
               </div>
 
               <div className="space-y-8">
-                {steps.map((s, i) => (
+                {t.howSteps.map((s, i) => (
                   <div key={s.num} className="flex gap-6">
                     <div className="flex flex-col items-center">
                       <span className="font-display text-xl font-bold text-brand-300">
                         {s.num}
                       </span>
-                      {i < steps.length - 1 && (
+                      {i < t.howSteps.length - 1 && (
                         <div className="mt-2 h-12 w-px bg-brand-200" />
                       )}
                     </div>
@@ -156,7 +115,6 @@ export default function LandingPage() {
                   </div>
                 ))}
               </div>
-
             </div>
           </div>
         </div>
@@ -166,11 +124,10 @@ export default function LandingPage() {
       <section className="border-t border-brand-200 bg-brand-100 px-4 py-16 text-center">
         <div className="mx-auto max-w-xl space-y-6">
           <h2 className="font-display text-3xl font-bold text-brand-900 sm:text-4xl">
-            Let's create a plan <em className="italic">together.</em>
+            {t.ctaTitle}
           </h2>
           <p className="text-base leading-relaxed text-brand-700">
-            No account required. You choose what to share. Call to confirm
-            before going.
+            {t.ctaBody}
           </p>
         </div>
       </section>

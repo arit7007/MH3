@@ -12,12 +12,55 @@ export type Translations = typeof TRANSLATIONS.en;
 
 export const TRANSLATIONS = {
   en: {
+    // Header
     getHelp: "Get Help",
     workerLogin: "Worker Log in",
+
+    // Home page
+    heroHeading: "Find the right",
+    heroSubheading: "next step.",
+    heroSubtitle: "Harbor matches people experiencing housing insecurity with realistic nearby resources — ranked by urgency, transportation, language, family needs, and accessibility.",
+    whatWeMatch: "What we match",
+    matchingTitle: "Matching Solutions That Actually Help",
+    howItWorks: "How it works",
+    threeStepsTitle: "Three steps to a real plan",
+    weAreMore: "We're more than a directory.",
+    ctaTitle: "Let's create a plan together.",
+    ctaBody: "No account required. You choose what to share. Call to confirm before going.",
+    homeFeatures: [
+      { heading: "Help for tonight\nor next week", body: "We surface options based on when you need them — emergency beds, same-day services, or longer-term planning." },
+      { heading: "Only what\nyou can reach", body: "Filter by walking, transit, car, or no transportation. We never show you places you can't get to." },
+      { heading: "No account,\nno judgment", body: "Your answers stay in your browser. Nothing is stored on a server. You choose exactly what to share." },
+      { heading: "Skip repeating\nyour story", body: "A one-tap outreach summary lets workers advocate for you without asking you to start over." },
+    ],
+    weAreMoreBullets: [
+      "We rank by what matters to your situation",
+      "We factor in pets, ID, language, and safety",
+      "We generate a plan, not just a list",
+      "We support outreach workers, too",
+    ],
+    howSteps: [
+      { num: "01", title: "Answer a few questions", body: "Tell us what you need, where you are, and what constraints matter — pets, ID, language, access." },
+      { num: "02", title: "See ranked options", body: "Resources are scored on a match algorithm that weighs dozens of factors, not just distance." },
+      { num: "03", title: "Get a clear action plan", body: "Who to call, what to bring, what to say — plus a backup if the first option is full." },
+    ],
+
+    // Door hint
     doorHint: "Open the door to find out more",
+
+    // Intake form
     steps: ["What you need", "Where & when", "Getting there", "Important needs", "Your plan", "Stay connected"],
     whatDoYouNeed: "What do you need right now?",
     whatDoYouNeedSub: "Choose the one that fits best. You can change it later.",
+    needLabels: {
+      Shelter: "Shelter",
+      Food: "Food",
+      "Shower/laundry": "Shower / Laundry",
+      "Medical help": "Medical Help",
+      "ID/document help": "ID / Documents",
+      "Recovery support": "Recovery Support",
+      "Transportation help": "Transportation Help",
+    },
     needs: {
       Shelter: "Safe place to sleep",
       Food: "Meals or food assistance",
@@ -25,6 +68,7 @@ export const TRANSLATIONS = {
       "Medical help": "Health care or clinic",
       "ID/document help": "Replace lost ID or docs",
       "Recovery support": "Drug, alcohol, or mental health recovery",
+      "Transportation help": "Rides or transit passes",
     },
     whereAreYou: "Where are you?",
     locationPlaceholder: "Santa Clara, CA",
@@ -74,6 +118,8 @@ export const TRANSLATIONS = {
     continue: "Continue →",
     seeOptions: "See my options →",
     demoPersona: "Use demo persona",
+
+    // Results
     results: "Results",
     optionsMayFit: "Options that may fit",
     changeAnswers: "Change answers",
@@ -86,10 +132,49 @@ export const TRANSLATIONS = {
   es: {
     getHelp: "Obtener Ayuda",
     workerLogin: "Iniciar sesión (trabajador)",
+
+    heroHeading: "Encuentra el paso",
+    heroSubheading: "correcto ahora.",
+    heroSubtitle: "Harbor conecta a personas con inseguridad habitacional con recursos cercanos y realistas — clasificados por urgencia, transporte, idioma, necesidades familiares y accesibilidad.",
+    whatWeMatch: "Lo que emparejamos",
+    matchingTitle: "Soluciones que realmente ayudan",
+    howItWorks: "Cómo funciona",
+    threeStepsTitle: "Tres pasos hacia un plan real",
+    weAreMore: "Somos más que un directorio.",
+    ctaTitle: "Creemos un plan juntos.",
+    ctaBody: "No se necesita cuenta. Tú eliges qué compartir. Llama para confirmar antes de ir.",
+    homeFeatures: [
+      { heading: "Ayuda para esta\nnoche o esta semana", body: "Mostramos opciones según cuándo las necesitas — camas de emergencia, servicios del mismo día o planificación a largo plazo." },
+      { heading: "Solo lo que\npuedes alcanzar", body: "Filtra por caminar, transporte público, auto o sin transporte. Nunca te mostramos lugares a los que no puedes llegar." },
+      { heading: "Sin cuenta,\nsin juicio", body: "Tus respuestas permanecen en tu navegador. Nada se almacena en un servidor. Tú decides qué compartir." },
+      { heading: "Salta repetir\ntu historia", body: "Un resumen de alcance te permite que los trabajadores aboguen por ti sin pedirte que empieces de nuevo." },
+    ],
+    weAreMoreBullets: [
+      "Clasificamos por lo que importa en tu situación",
+      "Consideramos mascotas, ID, idioma y seguridad",
+      "Generamos un plan, no solo una lista",
+      "También apoyamos a los trabajadores de alcance",
+    ],
+    howSteps: [
+      { num: "01", title: "Responde algunas preguntas", body: "Dinos qué necesitas, dónde estás y qué restricciones importan — mascotas, ID, idioma, acceso." },
+      { num: "02", title: "Ver opciones clasificadas", body: "Los recursos se puntúan con un algoritmo que pondera docenas de factores, no solo la distancia." },
+      { num: "03", title: "Obtén un plan de acción claro", body: "A quién llamar, qué traer, qué decir — más un respaldo si la primera opción está llena." },
+    ],
+
     doorHint: "Abre la puerta para saber más",
+
     steps: ["Lo que necesitas", "Dónde y cuándo", "Cómo llegar", "Necesidades importantes", "Tu plan", "Mantente conectado"],
     whatDoYouNeed: "¿Qué necesitas ahora mismo?",
     whatDoYouNeedSub: "Elige la que mejor se adapte. Puedes cambiarla después.",
+    needLabels: {
+      Shelter: "Refugio",
+      Food: "Comida",
+      "Shower/laundry": "Ducha / Lavandería",
+      "Medical help": "Atención Médica",
+      "ID/document help": "ID / Documentos",
+      "Recovery support": "Apoyo de Recuperación",
+      "Transportation help": "Ayuda de Transporte",
+    },
     needs: {
       Shelter: "Un lugar seguro para dormir",
       Food: "Comidas o asistencia alimentaria",
@@ -97,6 +182,7 @@ export const TRANSLATIONS = {
       "Medical help": "Atención médica o clínica",
       "ID/document help": "Reemplazar ID o documentos perdidos",
       "Recovery support": "Recuperación de drogas, alcohol o salud mental",
+      "Transportation help": "Viajes o pases de tránsito",
     },
     whereAreYou: "¿Dónde estás?",
     locationPlaceholder: "Santa Clara, CA",
@@ -124,7 +210,7 @@ export const TRANSLATIONS = {
       noId: "No tengo identificación ahora",
       prefersSpanish: "Prefiero español",
       wheelchairAccess: "Necesito acceso en silla de ruedas",
-      womenOrFamilySafe: "Necesito opciones solo para mujeres o para familias",
+      womenOrFamilySafe: "Necesito opciones solo para mujeres o familias",
     },
     wantPlan: "¿Te gustaría un plan de acción sencillo?",
     wantPlanSub: "Crearemos una guía paso a paso con lo que traer y a quién llamar.",
@@ -158,10 +244,49 @@ export const TRANSLATIONS = {
   vi: {
     getHelp: "Nhận Trợ Giúp",
     workerLogin: "Đăng nhập (nhân viên)",
+
+    heroHeading: "Tìm bước đi",
+    heroSubheading: "đúng tiếp theo.",
+    heroSubtitle: "Harbor kết nối những người có hoàn cảnh bất ổn về nhà ở với các nguồn lực thực tế gần đó — được xếp hạng theo mức độ khẩn cấp, phương tiện, ngôn ngữ, nhu cầu gia đình và khả năng tiếp cận.",
+    whatWeMatch: "Những gì chúng tôi kết hợp",
+    matchingTitle: "Giải pháp phù hợp thực sự giúp ích",
+    howItWorks: "Cách thức hoạt động",
+    threeStepsTitle: "Ba bước để có kế hoạch thực tế",
+    weAreMore: "Chúng tôi hơn cả một danh mục.",
+    ctaTitle: "Hãy cùng tạo một kế hoạch.",
+    ctaBody: "Không cần tài khoản. Bạn chọn những gì muốn chia sẻ. Hãy gọi để xác nhận trước khi đến.",
+    homeFeatures: [
+      { heading: "Trợ giúp tối nay\nhoặc tuần tới", body: "Chúng tôi hiển thị các tùy chọn dựa trên khi bạn cần — giường khẩn cấp, dịch vụ trong ngày hoặc lập kế hoạch dài hạn." },
+      { heading: "Chỉ những gì\nbạn có thể đến", body: "Lọc theo đi bộ, phương tiện công cộng, xe hơi hoặc không có phương tiện. Chúng tôi không hiển thị nơi bạn không thể đến." },
+      { heading: "Không tài khoản,\nkhông phán xét", body: "Câu trả lời của bạn được lưu trong trình duyệt. Không có gì được lưu trên máy chủ. Bạn chọn những gì muốn chia sẻ." },
+      { heading: "Không cần\nkể lại câu chuyện", body: "Tóm tắt tiếp cận một chạm cho phép nhân viên hỗ trợ bạn mà không yêu cầu bạn bắt đầu lại." },
+    ],
+    weAreMoreBullets: [
+      "Chúng tôi xếp hạng theo những gì quan trọng với bạn",
+      "Chúng tôi tính đến thú cưng, ID, ngôn ngữ và an toàn",
+      "Chúng tôi tạo kế hoạch, không chỉ là danh sách",
+      "Chúng tôi cũng hỗ trợ nhân viên cộng đồng",
+    ],
+    howSteps: [
+      { num: "01", title: "Trả lời một vài câu hỏi", body: "Cho chúng tôi biết bạn cần gì, bạn ở đâu và những hạn chế nào quan trọng — thú cưng, ID, ngôn ngữ, tiếp cận." },
+      { num: "02", title: "Xem các tùy chọn được xếp hạng", body: "Tài nguyên được tính điểm trên thuật toán xem xét hàng chục yếu tố, không chỉ khoảng cách." },
+      { num: "03", title: "Nhận kế hoạch hành động rõ ràng", body: "Ai cần gọi, cần mang gì, nói gì — cộng với phương án dự phòng nếu tùy chọn đầu tiên đầy." },
+    ],
+
     doorHint: "Mở cửa để tìm hiểu thêm",
+
     steps: ["Nhu cầu của bạn", "Địa điểm & thời gian", "Cách di chuyển", "Nhu cầu quan trọng", "Kế hoạch của bạn", "Giữ liên lạc"],
     whatDoYouNeed: "Bạn cần gì ngay bây giờ?",
     whatDoYouNeedSub: "Chọn loại phù hợp nhất. Bạn có thể thay đổi sau.",
+    needLabels: {
+      Shelter: "Nơi Trú Ẩn",
+      Food: "Thức Ăn",
+      "Shower/laundry": "Tắm / Giặt",
+      "Medical help": "Y Tế",
+      "ID/document help": "Giấy Tờ / ID",
+      "Recovery support": "Hỗ Trợ Phục Hồi",
+      "Transportation help": "Hỗ Trợ Đi Lại",
+    },
     needs: {
       Shelter: "Nơi an toàn để ngủ",
       Food: "Bữa ăn hoặc hỗ trợ thực phẩm",
@@ -169,6 +294,7 @@ export const TRANSLATIONS = {
       "Medical help": "Chăm sóc sức khỏe hoặc phòng khám",
       "ID/document help": "Thay thế giấy tờ tùy thân bị mất",
       "Recovery support": "Hỗ trợ phục hồi ma túy, rượu hoặc sức khỏe tâm thần",
+      "Transportation help": "Đi nhờ hoặc vé xe",
     },
     whereAreYou: "Bạn đang ở đâu?",
     locationPlaceholder: "Santa Clara, CA",
@@ -230,10 +356,49 @@ export const TRANSLATIONS = {
   zh: {
     getHelp: "获取帮助",
     workerLogin: "工作人员登录",
+
+    heroHeading: "找到正确的",
+    heroSubheading: "下一步。",
+    heroSubtitle: "Harbor将面临住房不稳定的人与现实的附近资源匹配 — 按紧急程度、交通、语言、家庭需求和无障碍性排名。",
+    whatWeMatch: "我们匹配的内容",
+    matchingTitle: "真正有帮助的匹配解决方案",
+    howItWorks: "工作原理",
+    threeStepsTitle: "三步制定真实计划",
+    weAreMore: "我们不仅仅是一个目录。",
+    ctaTitle: "让我们一起制定计划。",
+    ctaBody: "无需账户。您选择分享什么。去之前请致电确认。",
+    homeFeatures: [
+      { heading: "今晚或下周\n的帮助", body: "我们根据您需要的时间显示选项 — 紧急床位、当天服务或长期规划。" },
+      { heading: "只显示您\n能到达的地方", body: "按步行、公交、驾车或无交通工具筛选。我们从不显示您无法到达的地方。" },
+      { heading: "无需账户，\n无需评判", body: "您的答案留在浏览器中。没有任何内容存储在服务器上。您选择分享什么。" },
+      { heading: "跳过重复\n讲述您的故事", body: "一键外展摘要让工作人员为您辩护，而无需要求您重新开始。" },
+    ],
+    weAreMoreBullets: [
+      "我们根据对您情况重要的因素排名",
+      "我们考虑宠物、身份证、语言和安全",
+      "我们生成计划，而不仅仅是列表",
+      "我们也支持外展工作人员",
+    ],
+    howSteps: [
+      { num: "01", title: "回答几个问题", body: "告诉我们您需要什么、您在哪里，以及哪些限制条件重要 — 宠物、ID、语言、无障碍。" },
+      { num: "02", title: "查看排名选项", body: "资源通过匹配算法评分，该算法考虑数十个因素，而不仅仅是距离。" },
+      { num: "03", title: "获得清晰的行动计划", body: "打给谁、带什么、说什么 — 以及第一选择满员时的备选方案。" },
+    ],
+
     doorHint: "打开这扇门了解更多",
+
     steps: ["您的需求", "地点和时间", "如何到达", "重要需求", "您的计划", "保持联系"],
     whatDoYouNeed: "您现在需要什么？",
     whatDoYouNeedSub: "选择最适合的选项，之后可以更改。",
+    needLabels: {
+      Shelter: "庇护所",
+      Food: "食物",
+      "Shower/laundry": "淋浴 / 洗衣",
+      "Medical help": "医疗帮助",
+      "ID/document help": "证件帮助",
+      "Recovery support": "康复支持",
+      "Transportation help": "交通帮助",
+    },
     needs: {
       Shelter: "安全的睡眠场所",
       Food: "餐食或食物援助",
@@ -241,6 +406,7 @@ export const TRANSLATIONS = {
       "Medical help": "医疗保健或诊所",
       "ID/document help": "补办丢失的证件",
       "Recovery support": "药物、酒精或心理健康康复支持",
+      "Transportation help": "乘车或交通票",
     },
     whereAreYou: "您在哪里？",
     locationPlaceholder: "Santa Clara, CA",
@@ -302,10 +468,49 @@ export const TRANSLATIONS = {
   tl: {
     getHelp: "Humingi ng Tulong",
     workerLogin: "Mag-login (Manggagawa)",
+
+    heroHeading: "Hanapin ang tamang",
+    heroSubheading: "susunod na hakbang.",
+    heroSubtitle: "Itinutugma ng Harbor ang mga taong nakakaranas ng kawalan ng tirahan sa mga makatotohanang mapagkukunan sa malapit — inayos ayon sa pagkamadali, transportasyon, wika, pangangailangan ng pamilya, at accessibility.",
+    whatWeMatch: "Ano ang aming itinuutugma",
+    matchingTitle: "Mga Solusyong Tunay na Nakakatulong",
+    howItWorks: "Paano ito gumagana",
+    threeStepsTitle: "Tatlong hakbang sa isang tunay na plano",
+    weAreMore: "Higit pa kami kaysa isang direktoryo.",
+    ctaTitle: "Gumawa tayo ng plano nang magkasama.",
+    ctaBody: "Hindi kailangan ng account. Ikaw ang pumipili kung ano ang ishashare. Tumawag upang kumpirmahin bago pumunta.",
+    homeFeatures: [
+      { heading: "Tulong ngayong gabi\no sa susunod na linggo", body: "Nagpapakita kami ng mga opsyon batay sa kung kailan mo kailangan ang mga ito — emergency na higaan, mga serbisyong araw din, o pangmatagalang pagpaplano." },
+      { heading: "Ang tanging maaari\nmong maabot", body: "I-filter ayon sa paglalakad, pampublikong transportasyon, sasakyan, o walang transportasyon. Hindi namin ipinakikita ang mga lugar na hindi mo maabot." },
+      { heading: "Walang account,\nwalang paghatol", body: "Ang iyong mga sagot ay nananatili sa iyong browser. Walang nakaimbak sa server. Ikaw ang pumipili ng ishashare." },
+      { heading: "Laktawan ang\npag-uulit ng kwento", body: "Ang isang-tap na buod ng outreach ay nagbibigay-daan sa mga manggagawa na mag-advocate para sa iyo nang hindi ka hihingan na magsimula muli." },
+    ],
+    weAreMoreBullets: [
+      "Nag-ra-rank kami ayon sa mahalaga sa iyong sitwasyon",
+      "Isinasaalang-alang namin ang mga alagang hayop, ID, wika, at kaligtasan",
+      "Naglilikha kami ng plano, hindi lang isang listahan",
+      "Sinusuportahan din namin ang mga outreach worker",
+    ],
+    howSteps: [
+      { num: "01", title: "Sumagot sa ilang tanong", body: "Sabihin sa amin kung ano ang kailangan mo, nasaan ka, at kung anong mga hadlang ang mahalaga — alagang hayop, ID, wika, access." },
+      { num: "02", title: "Tingnan ang mga rangkadong opsyon", body: "Ang mga mapagkukunan ay sinusukatán gamit ang isang algorithm na tinitimbang ang dose-dosenang kadahilanan, hindi lang ang distansya." },
+      { num: "03", title: "Makakuha ng malinaw na plano ng aksyon", body: "Sino ang tatawagan, ano ang dadalhin, ano ang sasabihin — kasama ang backup kung ang unang opsyon ay puno." },
+    ],
+
     doorHint: "Buksan ang pinto para malaman ang higit pa",
+
     steps: ["Iyong Pangangailangan", "Saan at Kailan", "Paano Makarating", "Mahahalagang Pangangailangan", "Iyong Plano", "Manatiling Konektado"],
     whatDoYouNeed: "Ano ang kailangan mo ngayon?",
     whatDoYouNeedSub: "Piliin ang pinakamaiangkop. Maaari mo itong baguhin mamaya.",
+    needLabels: {
+      Shelter: "Silungan",
+      Food: "Pagkain",
+      "Shower/laundry": "Paliligo / Labada",
+      "Medical help": "Tulong Medikal",
+      "ID/document help": "ID / Dokumento",
+      "Recovery support": "Suporta sa Pagbawi",
+      "Transportation help": "Tulong sa Transportasyon",
+    },
     needs: {
       Shelter: "Ligtas na lugar para matulog",
       Food: "Pagkain o tulong sa pagkain",
@@ -313,6 +518,7 @@ export const TRANSLATIONS = {
       "Medical help": "Pangangalagang pangkalusugan o klinika",
       "ID/document help": "Palitan ang nawawalang ID o dokumento",
       "Recovery support": "Suporta sa pagbawi mula sa droga, alkohol, o mental na kalusugan",
+      "Transportation help": "Sakay o transit pass",
     },
     whereAreYou: "Nasaan ka?",
     locationPlaceholder: "Santa Clara, CA",
