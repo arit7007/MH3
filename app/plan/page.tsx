@@ -23,13 +23,28 @@ export default function PlanPage() {
       return;
     }
 
-    const ranked = rankResources(i, getResources());
-    const selectedId =
-      typeof window !== "undefined"
-        ? window.localStorage.getItem("harbor_selected")
-        : null;
-    const chosen = ranked.find((r) => r.id === selectedId) ?? ranked[0];
-    const backup = ranked.find((r) => r.id !== chosen.id);
+    // Prefer the full AI-generated resource stored from results page
+    const storedResource = window.localStorage.getItem("harbor_selected_resource");
+    let chosen: MatchResult;
+    let backup: MatchResult | undefined;
+    if (storedResource) {
+      try {
+        const parsed = JSON.parse(storedResource) as MatchResult;
+        chosen = parsed;
+        // Use hardcoded resources for backup only
+        const ranked = rankResources(i, getResources());
+        backup = ranked.find((r) => r.id !== chosen.id);
+      } catch {
+        const ranked = rankResources(i, getResources());
+        chosen = ranked[0];
+        backup = ranked[1];
+      }
+    } else {
+      const ranked = rankResources(i, getResources());
+      const selectedId = window.localStorage.getItem("harbor_selected");
+      chosen = ranked.find((r) => r.id === selectedId) ?? ranked[0];
+      backup = ranked.find((r) => r.id !== chosen.id);
+    }
     setTop(chosen);
 
     const fallback = buildFallbackPlan(i, chosen, backup);

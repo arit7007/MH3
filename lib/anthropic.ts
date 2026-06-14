@@ -38,11 +38,18 @@ export async function callClaude(
   return text;
 }
 
-// Extract the first JSON object from a model response that may include prose
-// or code fences.
+// Extract the first JSON object or array from a model response that may include
+// prose or code fences.
 export function extractJson<T>(text: string): T {
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const candidate = fenced ? fenced[1] : text;
+  const objStart = candidate.indexOf("{");
+  const arrStart = candidate.indexOf("[");
+  if (arrStart !== -1 && (objStart === -1 || arrStart < objStart)) {
+    const end = candidate.lastIndexOf("]");
+    if (end === -1) throw new Error("No JSON array found");
+    return JSON.parse(candidate.slice(arrStart, end + 1)) as T;
+  }
   const start = candidate.indexOf("{");
   const end = candidate.lastIndexOf("}");
   if (start === -1 || end === -1) throw new Error("No JSON found");
