@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { hasSupabaseEnv } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -17,10 +18,15 @@ export default async function Header() {
     <header className="sticky top-0 z-20 border-b border-brand-200/70 bg-brand-50/90 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-3">
-          <span className="font-display text-xl font-semibold text-brand-900 tracking-tight">
-            Harbor
-          </span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/harbor-logo.png"
+            alt="Harbor"
+            width={120}
+            height={48}
+            className="h-12 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Right side */}
