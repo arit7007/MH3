@@ -45,6 +45,18 @@ export const TRANSLATIONS = {
       { num: "03", title: "Get a clear action plan", body: "Who to call, what to bring, what to say — plus a backup if the first option is full." },
     ],
 
+    // Intake page header
+    navigatorLabel: "Navigator",
+    intakeHeading1: "Let's find",
+    intakeHeading2: "what fits.",
+    intakeSubtitle: "A few simple questions. There are no wrong answers, and you choose what to share.",
+
+    // Privacy banner
+    privateLabel: "Private",
+    privateText: "No account required. Sensitive details are used only to create a plan and can be cleared anytime.",
+    noteLabel: "Note",
+    noteText: "Harbor uses publicly listed resource data. Hours, bed space, and intake rules can change quickly. Please call to confirm before traveling.",
+
     // Door hint
     doorHint: "Open the door to find out more",
 
@@ -161,6 +173,15 @@ export const TRANSLATIONS = {
       { num: "03", title: "Obtén un plan de acción claro", body: "A quién llamar, qué traer, qué decir — más un respaldo si la primera opción está llena." },
     ],
 
+    navigatorLabel: "Navegador",
+    intakeHeading1: "Encontremos",
+    intakeHeading2: "lo que encaja.",
+    intakeSubtitle: "Algunas preguntas sencillas. No hay respuestas incorrectas y tú eliges qué compartir.",
+    privateLabel: "Privado",
+    privateText: "No se necesita cuenta. Los detalles sensibles solo se usan para crear un plan y se pueden borrar en cualquier momento.",
+    noteLabel: "Nota",
+    noteText: "Harbor usa datos de recursos de acceso público. Los horarios, espacios y reglas pueden cambiar rápidamente. Llama para confirmar antes de ir.",
+
     doorHint: "Abre la puerta para saber más",
 
     steps: ["Lo que necesitas", "Dónde y cuándo", "Cómo llegar", "Necesidades importantes", "Tu plan", "Mantente conectado"],
@@ -272,6 +293,15 @@ export const TRANSLATIONS = {
       { num: "02", title: "Xem các tùy chọn được xếp hạng", body: "Tài nguyên được tính điểm trên thuật toán xem xét hàng chục yếu tố, không chỉ khoảng cách." },
       { num: "03", title: "Nhận kế hoạch hành động rõ ràng", body: "Ai cần gọi, cần mang gì, nói gì — cộng với phương án dự phòng nếu tùy chọn đầu tiên đầy." },
     ],
+
+    navigatorLabel: "Điều Hướng",
+    intakeHeading1: "Hãy tìm",
+    intakeHeading2: "điều phù hợp.",
+    intakeSubtitle: "Một vài câu hỏi đơn giản. Không có câu trả lời sai và bạn chọn những gì muốn chia sẻ.",
+    privateLabel: "Riêng Tư",
+    privateText: "Không cần tài khoản. Thông tin nhạy cảm chỉ được dùng để tạo kế hoạch và có thể xóa bất cứ lúc nào.",
+    noteLabel: "Lưu ý",
+    noteText: "Harbor sử dụng dữ liệu nguồn lực được công bố công khai. Giờ mở cửa và chỗ trống có thể thay đổi nhanh chóng. Hãy gọi để xác nhận trước khi đến.",
 
     doorHint: "Mở cửa để tìm hiểu thêm",
 
@@ -385,6 +415,15 @@ export const TRANSLATIONS = {
       { num: "03", title: "获得清晰的行动计划", body: "打给谁、带什么、说什么 — 以及第一选择满员时的备选方案。" },
     ],
 
+    navigatorLabel: "导航",
+    intakeHeading1: "让我们找到",
+    intakeHeading2: "适合的选项。",
+    intakeSubtitle: "几个简单的问题。没有错误答案，您选择分享什么。",
+    privateLabel: "私密",
+    privateText: "无需账户。敏感信息仅用于制定计划，可随时清除。",
+    noteLabel: "注意",
+    noteText: "Harbor使用公开列出的资源数据。营业时间、床位和入住规则可能会迅速变化。请致电确认后再前往。",
+
     doorHint: "打开这扇门了解更多",
 
     steps: ["您的需求", "地点和时间", "如何到达", "重要需求", "您的计划", "保持联系"],
@@ -496,6 +535,15 @@ export const TRANSLATIONS = {
       { num: "02", title: "Tingnan ang mga rangkadong opsyon", body: "Ang mga mapagkukunan ay sinusukatán gamit ang isang algorithm na tinitimbang ang dose-dosenang kadahilanan, hindi lang ang distansya." },
       { num: "03", title: "Makakuha ng malinaw na plano ng aksyon", body: "Sino ang tatawagan, ano ang dadalhin, ano ang sasabihin — kasama ang backup kung ang unang opsyon ay puno." },
     ],
+
+    navigatorLabel: "Navigator",
+    intakeHeading1: "Hanapin natin",
+    intakeHeading2: "ang bagay na akma.",
+    intakeSubtitle: "Ilang simpleng tanong. Walang maling sagot, at ikaw ang pumipili kung ano ang ishashare.",
+    privateLabel: "Pribado",
+    privateText: "Hindi kailangan ng account. Ang mga sensitibong detalye ay ginagamit lamang para gumawa ng plano at maaaring burahin anumang oras.",
+    noteLabel: "Paalala",
+    noteText: "Gumagamit ang Harbor ng data ng mapagkukunang nakalista sa publiko. Ang mga oras, espasyo, at patakaran ay maaaring mabilis na magbago. Mangyaring tumawag upang kumpirmahin bago pumunta.",
 
     doorHint: "Buksan ang pinto para malaman ang higit pa",
 
