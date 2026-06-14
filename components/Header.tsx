@@ -23,23 +23,19 @@ export default async function Header() {
           </span>
         </Link>
 
-        {/* Worker nav */}
-        {workerEmail && (
-          <nav className="hidden items-center gap-8 text-sm font-semibold uppercase tracking-widest text-brand-700 sm:flex">
-            <Link href="/outreach" className="transition-colors hover:text-brand-500">
-              Outreach
-            </Link>
-            <Link href="/admin" className="transition-colors hover:text-brand-500">
-              Admin
-            </Link>
-          </nav>
-        )}
+        {/* Right side */}
+        <div className="flex items-center gap-4">
+          {workerEmail && (
+            <nav className="hidden items-center gap-8 text-sm font-semibold uppercase tracking-widest text-brand-700 sm:flex">
+              <Link href="/outreach" className="transition-colors hover:text-brand-500">
+                Outreach
+              </Link>
+              <Link href="/admin" className="transition-colors hover:text-brand-500">
+                Admin
+              </Link>
+            </nav>
+          )}
 
-        {/* Language switcher */}
-        <LanguageSwitcher />
-
-        {/* CTA */}
-        <div className="flex items-center gap-3">
           {workerEmail ? (
             <form action="/auth/signout" method="post">
               <button className="text-sm font-semibold uppercase tracking-widest text-brand-600 hover:text-brand-800 transition-colors">
@@ -59,6 +55,8 @@ export default async function Header() {
               </Link>
             </>
           )}
+
+          <LanguageSwitcher />
         </div>
       </div>
     </header>
