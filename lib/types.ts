@@ -43,6 +43,9 @@ export type Intake = {
   wheelchairAccess: boolean;
   womenOrFamilySafe: boolean;
   wantsPlan: boolean;
+  wantsContact: boolean;
+  contactPhone?: string;
+  contactEmail?: string;
 };
 
 export type Reliability = "High" | "Medium" | "Low";

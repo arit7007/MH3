@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Intake, Need, Transportation, Urgency } from "@/lib/types";
 import { saveIntake } from "@/lib/store";
+import { saveContactRequest } from "@/lib/contactRequests";
 import { mariaIntake } from "@/lib/demoCases";
 
 const NEED_OPTIONS: { value: Need; desc: string }[] = [
@@ -61,6 +62,9 @@ const defaultIntake: Intake = {
   wheelchairAccess: false,
   womenOrFamilySafe: false,
   wantsPlan: true,
+  wantsContact: false,
+  contactPhone: "",
+  contactEmail: "",
 };
 
 const steps = [
@@ -68,8 +72,8 @@ const steps = [
   "Where & when",
   "Getting there",
   "Important needs",
-  "Action plan",
-  "Request details",
+  "Your plan",
+  "Stay connected",
 ];
 
 function OptionButton({
@@ -117,6 +121,7 @@ export default function IntakeForm() {
 
   function submit(data: Intake) {
     saveIntake(data);
+    if (data.wantsContact) saveContactRequest(data);
     router.push("/results");
   }
 
@@ -132,28 +137,25 @@ export default function IntakeForm() {
       setLocationStatus("");
       return;
     }
-
     setLocationError("");
     setLocationStatus("Getting your current location...");
-
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
+        const { latitude, longitude } = position.coords;
         setIntake((prev) => ({
           ...prev,
           useCurrentLocation: true,
           currentCoordinates: { latitude, longitude },
           location: `Current location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`,
         }));
-        setLocationStatus("Current location added to this request.");
+        setLocationStatus("Current location added.");
       },
       (error) => {
-        const message =
+        setLocationError(
           error.code === error.PERMISSION_DENIED
             ? "Location permission was denied. You can keep the city you entered instead."
-            : "We could not get your current location. You can keep the city you entered instead.";
-        setLocationError(message);
+            : "Could not get your location. You can keep the city you entered instead."
+        );
         setLocationStatus("");
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
@@ -175,12 +177,8 @@ export default function IntakeForm() {
           ))}
         </div>
         <div className="flex items-baseline justify-between">
-          <p className="font-display text-sm italic text-brand-500">
-            {steps[step]}
-          </p>
-          <p className="section-label text-[10px]">
-            {step + 1} / {steps.length}
-          </p>
+          <p className="font-display text-sm italic text-brand-500">{steps[step]}</p>
+          <p className="section-label text-[10px]">{step + 1} / {steps.length}</p>
         </div>
       </div>
 
@@ -215,10 +213,8 @@ export default function IntakeForm() {
       {/* Step 1 – Location & urgency */}
       {step === 1 && (
         <section className="space-y-8">
-          <div className="space-y-4">
-            <h2 className="font-display text-2xl font-bold text-brand-900">
-              Where are you?
-            </h2>
+          <div className="space-y-3">
+            <h2 className="font-display text-2xl font-bold text-brand-900">Where are you?</h2>
             <input
               className="field-input"
               value={intake.location}
@@ -234,11 +230,37 @@ export default function IntakeForm() {
               }}
               placeholder="Santa Clara, CA"
             />
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <button
+                type="button"
+                className="text-sm font-semibold text-brand-600 underline decoration-dotted hover:text-brand-800 transition-colors"
+                onClick={useCurrentLocation}
+              >
+                Use my current location
+              </button>
+              {intake.useCurrentLocation && (
+                <button
+                  type="button"
+                  className="text-sm text-brand-400 underline decoration-dotted hover:text-brand-600 transition-colors"
+                  onClick={() =>
+                    setIntake((prev) => ({
+                      ...prev,
+                      useCurrentLocation: false,
+                      currentCoordinates: null,
+                      location: typedLocation,
+                    }))
+                  }
+                >
+                  Use typed address instead
+                </button>
+              )}
+            </div>
+            {locationStatus && <p className="text-sm text-brand-600">{locationStatus}</p>}
+            {locationError && <p className="text-sm text-amber-700">{locationError}</p>}
           </div>
+
           <div className="space-y-4">
-            <h2 className="font-display text-2xl font-bold text-brand-900">
-              How urgent is this?
-            </h2>
+            <h2 className="font-display text-2xl font-bold text-brand-900">How urgent is this?</h2>
             <div className="grid gap-3 sm:grid-cols-3">
               {URGENCY_OPTIONS.map((u) => (
                 <OptionButton
@@ -246,12 +268,8 @@ export default function IntakeForm() {
                   active={intake.urgency === u.value}
                   onClick={() => set("urgency", u.value)}
                 >
-                  <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                    {u.label}
-                  </span>
-                  <span className="mt-1 block text-sm leading-snug text-brand-500">
-                    {u.sub}
-                  </span>
+                  <span className="block text-lg font-semibold leading-tight sm:text-xl">{u.label}</span>
+                  <span className="mt-1 block text-sm leading-snug text-brand-500">{u.sub}</span>
                 </OptionButton>
               ))}
             </div>
@@ -263,9 +281,7 @@ export default function IntakeForm() {
       {step === 2 && (
         <section className="space-y-6">
           <div>
-            <h2 className="font-display text-2xl font-bold text-brand-900">
-              How can you get there?
-            </h2>
+            <h2 className="font-display text-2xl font-bold text-brand-900">How can you get there?</h2>
             <p className="mt-1 text-sm text-brand-700">
               We'll only show places you can realistically reach.
             </p>
@@ -277,9 +293,7 @@ export default function IntakeForm() {
                 active={intake.transportation === t.value}
                 onClick={() => set("transportation", t.value)}
               >
-                <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                  {t.value}
-                </span>
+                <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.value}</span>
               </OptionButton>
             ))}
           </div>
@@ -290,9 +304,7 @@ export default function IntakeForm() {
       {step === 3 && (
         <section className="space-y-6">
           <div>
-            <h2 className="font-display text-2xl font-bold text-brand-900">
-              Any important needs?
-            </h2>
+            <h2 className="font-display text-2xl font-bold text-brand-900">Any important needs?</h2>
             <p className="mt-1 text-sm text-brand-700">
               Select all that apply — this helps us find options that truly fit.
             </p>
@@ -304,9 +316,7 @@ export default function IntakeForm() {
                 active={Boolean(intake[item.key])}
                 onClick={() => toggle(item.key)}
               >
-                <span className="block text-lg font-medium leading-tight sm:text-xl">
-                  {item.label}
-                </span>
+                <span className="block text-lg font-medium leading-tight sm:text-xl">{item.label}</span>
               </OptionButton>
             ))}
           </div>
@@ -326,75 +336,89 @@ export default function IntakeForm() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <OptionButton active={intake.wantsPlan} onClick={() => set("wantsPlan", true)}>
-              <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                Yes, create a plan
-              </span>
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">Yes, create a plan</span>
               <span className="mt-1 block text-sm text-brand-500">Recommended</span>
             </OptionButton>
             <OptionButton active={!intake.wantsPlan} onClick={() => set("wantsPlan", false)}>
-              <span className="block text-lg font-semibold leading-tight sm:text-xl">
-                Just show options
-              </span>
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">Just show options</span>
               <span className="mt-1 block text-sm text-brand-500">Skip the plan</span>
             </OptionButton>
           </div>
         </section>
       )}
 
+      {/* Step 5 – Stay connected */}
       {step === 5 && (
         <section className="space-y-6">
           <div>
             <h2 className="font-display text-2xl font-bold text-brand-900">
-              Final details for this request
+              Want a shelter worker to contact you?
             </h2>
             <p className="mt-1 text-sm text-brand-700">
-              Add a name and choose whether to use your current location.
+              Local outreach workers can reach out directly to help you get placed faster.
+              This is completely optional.
             </p>
           </div>
-
-          <div className="space-y-3">
-            <label className="block text-sm font-semibold text-brand-900" htmlFor="request-name">
-              Name on the request
-            </label>
-            <input
-              id="request-name"
-              className="field-input"
-              value={intake.requestName ?? ""}
-              onChange={(e) => set("requestName", e.target.value)}
-              placeholder="Your name"
-              autoComplete="name"
-            />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <OptionButton
+              active={intake.wantsContact === true}
+              onClick={() => set("wantsContact", true)}
+            >
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">
+                Yes, contact me
+              </span>
+              <span className="mt-1 block text-sm text-brand-500">
+                A worker will reach out to help
+              </span>
+            </OptionButton>
+            <OptionButton
+              active={intake.wantsContact === false}
+              onClick={() => set("wantsContact", false)}
+            >
+              <span className="block text-lg font-semibold leading-tight sm:text-xl">
+                No, keep it private
+              </span>
+              <span className="mt-1 block text-sm text-brand-500">
+                I'll reach out myself
+              </span>
+            </OptionButton>
           </div>
 
-          <div className="space-y-3 rounded-sm border border-brand-200 bg-white p-4">
-            <div>
-              <p className="text-sm font-semibold text-brand-900">Location for this request</p>
-              <p className="mt-1 text-sm text-brand-700">{intake.location}</p>
+          {intake.wantsContact && (
+            <div className="space-y-4 rounded-sm border border-brand-200 bg-white p-5">
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-brand-900" htmlFor="contact-phone">
+                  Phone number
+                </label>
+                <input
+                  id="contact-phone"
+                  className="field-input"
+                  type="tel"
+                  placeholder="(408) 555-0100"
+                  value={intake.contactPhone ?? ""}
+                  onChange={(e) => set("contactPhone", e.target.value)}
+                  autoComplete="tel"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-brand-900" htmlFor="contact-email">
+                  Email <span className="font-normal text-brand-400">(optional)</span>
+                </label>
+                <input
+                  id="contact-email"
+                  className="field-input"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={intake.contactEmail ?? ""}
+                  onChange={(e) => set("contactEmail", e.target.value)}
+                  autoComplete="email"
+                />
+              </div>
+              <p className="text-xs text-brand-400">
+                Only shared with verified local outreach workers. You can ask them to delete it at any time.
+              </p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <button type="button" className="btn-secondary py-2.5" onClick={useCurrentLocation}>
-                Use my current location
-              </button>
-              {intake.useCurrentLocation && (
-                <button
-                  type="button"
-                  className="btn-secondary py-2.5"
-                  onClick={() =>
-                    setIntake((prev) => ({
-                      ...prev,
-                      useCurrentLocation: false,
-                      currentCoordinates: null,
-                      location: typedLocation,
-                    }))
-                  }
-                >
-                  Keep typed location instead
-                </button>
-              )}
-            </div>
-            {locationStatus ? <p className="text-sm text-brand-600">{locationStatus}</p> : null}
-            {locationError ? <p className="text-sm text-amber-800">{locationError}</p> : null}
-          </div>
+          )}
         </section>
       )}
 
