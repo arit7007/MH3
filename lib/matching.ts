@@ -7,8 +7,11 @@ export function scoreResource(intake: Intake, resource: Resource) {
   const warnings: string[] = [];
 
   if (resource.type.includes(intake.need)) {
-    score += 5;
+    score += 8;
     reasons.push("Matches your main need");
+  } else {
+    score -= 8;
+    warnings.push("Does not provide the type of help you selected");
   }
 
   if (intake.urgency === "Tonight") {
