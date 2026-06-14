@@ -59,6 +59,7 @@ function ruleBasedExtract(note: string): Intake {
     wheelchairAccess: has("wheelchair", "mobility", "accessible"),
     womenOrFamilySafe: has("women", "woman", "family-safe", "domestic", "safe option"),
     wantsPlan: true,
+    wantsContact: false,
   };
 }
 
@@ -104,6 +105,7 @@ export async function POST(req: NextRequest) {
       wheelchairAccess: parsed.wheelchairAccess ?? fallback.wheelchairAccess,
       womenOrFamilySafe: parsed.womenOrFamilySafe ?? fallback.womenOrFamilySafe,
       wantsPlan: true,
+      wantsContact: false,
     };
     return NextResponse.json(intake);
   } catch {

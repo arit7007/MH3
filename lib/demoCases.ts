@@ -25,6 +25,7 @@ export const mariaIntake: Intake = {
   wheelchairAccess: false,
   womenOrFamilySafe: false,
   wantsPlan: true,
+  wantsContact: false,
 };
 
 export const demoCases: DemoCase[] = [
@@ -59,6 +60,7 @@ export const demoCases: DemoCase[] = [
       wheelchairAccess: false,
       womenOrFamilySafe: false,
       wantsPlan: true,
+  wantsContact: false,
     },
   },
   {
@@ -83,6 +85,7 @@ export const demoCases: DemoCase[] = [
       wheelchairAccess: false,
       womenOrFamilySafe: true,
       wantsPlan: true,
+  wantsContact: false,
     },
   },
 ];
