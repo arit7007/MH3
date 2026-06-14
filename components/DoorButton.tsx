@@ -157,8 +157,8 @@ export default function DoorButton() {
         </div>
 
         {/* Hint text */}
-        <p className="mt-6 font-display text-sm italic text-brand-400">
-          Open the door to find your next step
+        <p className="mt-8 font-display text-2xl font-bold italic text-brand-600 sm:text-3xl">
+          Open the door to find out more
         </p>
       </div>
     </>
