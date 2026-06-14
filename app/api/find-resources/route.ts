@@ -103,11 +103,13 @@ Return 5-8 real organizations near ${intake.location} that can help with "${inta
     const text = await callClaude(SYSTEM, userContent, 2500);
     const parsed = extractJson<Resource[]>(text);
 
-    if (!Array.isArray(parsed) || parsed.length === 0) {
+    const filtered = Array.isArray(parsed) ? parsed.filter((r) => r.distanceMiles > 0) : [];
+
+    if (filtered.length === 0) {
       return NextResponse.json({ resources: fallbackResources, source: "fallback" });
     }
 
-    return NextResponse.json({ resources: parsed, source: "ai" });
+    return NextResponse.json({ resources: filtered, source: "ai" });
   } catch {
     return NextResponse.json({ resources: fallbackResources, source: "fallback" });
   }
