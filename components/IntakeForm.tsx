@@ -8,12 +8,12 @@ import { saveContactRequest } from "@/lib/contactRequests";
 import { mariaIntake } from "@/lib/demoCases";
 
 const NEED_OPTIONS: { value: Need; desc: string }[] = [
-  { value: "Shelter tonight", desc: "Safe place to sleep" },
+  { value: "Shelter", desc: "Safe place to sleep" },
   { value: "Food", desc: "Meals or food assistance" },
   { value: "Shower/laundry", desc: "Hygiene facilities" },
   { value: "Medical help", desc: "Health care or clinic" },
   { value: "ID/document help", desc: "Replace lost ID or docs" },
-  { value: "Case management", desc: "Ongoing support" },
+  { value: "Recovery support", desc: "Drug, alcohol, or mental health recovery" },
   { value: "Transportation help", desc: "Rides or transit passes" },
 ];
 
@@ -48,7 +48,7 @@ const NEED_LABELS: { key: BooleanIntakeKey; label: string }[] = [
 ];
 
 const defaultIntake: Intake = {
-  need: "Shelter tonight",
+  need: "Shelter",
   location: "Santa Clara, CA",
   requestName: "",
   useCurrentLocation: false,

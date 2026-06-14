@@ -1,19 +1,19 @@
 export type Need =
-  | "Shelter tonight"
+  | "Shelter"
   | "Food"
   | "Shower/laundry"
   | "Medical help"
   | "ID/document help"
-  | "Case management"
+  | "Recovery support"
   | "Transportation help";
 
 export const NEEDS: Need[] = [
-  "Shelter tonight",
+  "Shelter",
   "Food",
   "Shower/laundry",
   "Medical help",
   "ID/document help",
-  "Case management",
+  "Recovery support",
   "Transportation help",
 ];
 

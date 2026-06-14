@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 const SYSTEM = `You convert a short outreach worker note into a structured intake object for a housing resource navigator.
 Return ONLY valid JSON matching this shape, inferring sensible defaults when unstated:
 {
-  "need": "Shelter tonight" | "Food" | "Shower/laundry" | "Medical help" | "ID/document help" | "Case management" | "Transportation help",
+  "need": "Shelter" | "Food" | "Shower/laundry" | "Medical help" | "ID/document help" | "Recovery support" | "Transportation help",
   "location": "string",
   "urgency": "Tonight" | "This week" | "Planning ahead",
   "transportation": "Walking" | "Public transit" | "Car" | "Need transportation help",
@@ -25,13 +25,13 @@ function ruleBasedExtract(note: string): Intake {
   const n = note.toLowerCase();
   const has = (...words: string[]) => words.some((w) => n.includes(w));
 
-  let need: Need = "Shelter tonight";
+  let need: Need = "Shelter";
   if (has("food", "meal", "hungry")) need = "Food";
   else if (has("shower", "laundry", "hygiene")) need = "Shower/laundry";
   else if (has("medical", "health", "doctor", "wound")) need = "Medical help";
   else if (has("id", "document", "paperwork", "benefits")) need = "ID/document help";
   else if (has("transport", "bus", "ride")) need = "Transportation help";
-  else if (has("case management", "case worker", "case manager")) need = "Case management";
+  else if (has("rehab", "recovery", "detox", "substance", "addiction", "alcohol", "drug", "case management", "case worker")) need = "Recovery support";
 
   let urgency: Urgency = "This week";
   if (has("tonight", "today", "now", "right now", "urgent")) urgency = "Tonight";

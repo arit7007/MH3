@@ -7,7 +7,7 @@ export const resources: Resource[] = [
   {
     id: "boccardo-reception-center",
     name: "Boccardo Reception Center (HomeFirst)",
-    type: ["Shelter tonight", "Case management"],
+    type: ["Shelter"],
     description:
       "Large emergency shelter with meals, showers, and supportive services for adults and some families.",
     distanceMiles: 6.2,
@@ -30,7 +30,7 @@ export const resources: Resource[] = [
   {
     id: "montgomery-street-inn",
     name: "Montgomery Street Inn (LifeMoves)",
-    type: ["Shelter tonight", "Case management"],
+    type: ["Shelter"],
     description:
       "Emergency and transitional housing for adult men with case management, veterans' services, and medical respite care.",
     distanceMiles: 4.8,
@@ -53,7 +53,7 @@ export const resources: Resource[] = [
   {
     id: "georgia-travis-house",
     name: "Georgia Travis House (LifeMoves)",
-    type: ["Shelter tonight", "Case management"],
+    type: ["Shelter"],
     description:
       "Emergency housing for women and families with case management, counseling, and child-focused support.",
     distanceMiles: 4.9,
@@ -77,9 +77,9 @@ export const resources: Resource[] = [
   {
     id: "julian-street-inn",
     name: "Julian Street Inn (LifeMoves)",
-    type: ["Shelter tonight", "Case management"],
+    type: ["Shelter", "Recovery support"],
     description:
-      "Emergency and transitional housing for adults with a mental illness, with beds, meals, and supportive services.",
+      "Emergency and transitional housing for adults with a mental illness or co-occurring substance use disorder, with beds, meals, and supportive services.",
     distanceMiles: 4.4,
     intakeHours: "Call for information",
     openTonight: true,
@@ -100,7 +100,7 @@ export const resources: Resource[] = [
   {
     id: "emmanuel-house",
     name: "Emmanuel House (The Salvation Army)",
-    type: ["Shelter tonight", "Food"],
+    type: ["Shelter", "Food"],
     description:
       "Overnight and transitional housing for men, with community meals served on site.",
     distanceMiles: 4.7,
@@ -192,7 +192,7 @@ export const resources: Resource[] = [
   {
     id: "here4you-hotline",
     name: "Here4You Hotline (Bill Wilson Center)",
-    type: ["Transportation help", "Case management", "ID/document help"],
+    type: ["Transportation help", "ID/document help"],
     description:
       "County shelter hotline that matches people to temporary housing programs and can coordinate transportation to shelter.",
     distanceMiles: 1.0,
@@ -210,6 +210,29 @@ export const resources: Resource[] = [
     whatToBring: ["Current location", "Basic details about who needs shelter", "Phone if available"],
     notes:
       "Best first step when you need a shelter referral or transportation help. They also connect callers to other resources.",
+    reliability: "High",
+  },
+  {
+    id: "pathway-society",
+    name: "Pathway Society",
+    type: ["Recovery support"],
+    description:
+      "Adult residential drug and alcohol treatment program offering detox, residential rehab, and aftercare support in San Jose.",
+    distanceMiles: 3.8,
+    intakeHours: "Call Mon-Fri 8 AM to 5 PM for intake screening",
+    openTonight: false,
+    walkIns: false,
+    requiresId: null,
+    allowsPets: false,
+    familyFriendly: false,
+    wheelchairAccessible: null,
+    languages: ["English", "Spanish"],
+    transportation: ["Public transit", "Car"],
+    phone: "(408) 294-9471",
+    address: "370 West Julian Street, San Jose, CA 95110",
+    whatToBring: ["Photo ID if available", "Medical history or prescriptions", "Clothing for a residential stay"],
+    notes:
+      "Sliding-scale fees; accepts Medi-Cal. Offers detox referrals and residential treatment. Call first — direct walk-in intake is not available.",
     reliability: "High",
   },
   {

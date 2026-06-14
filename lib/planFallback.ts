@@ -90,7 +90,7 @@ function buildMessage(
 
 function needEsp(intake: Intake): string {
   switch (intake.need) {
-    case "Shelter tonight":
+    case "Shelter":
       return "refugio";
     case "Food":
       return "comida";
@@ -100,8 +100,8 @@ function needEsp(intake: Intake): string {
       return "ayuda médica";
     case "ID/document help":
       return "ayuda con documentos o identificación";
-    case "Case management":
-      return "manejo de caso";
+    case "Recovery support":
+      return "apoyo de recuperación";
     case "Transportation help":
       return "ayuda con transporte";
     default:

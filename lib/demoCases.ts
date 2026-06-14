@@ -11,7 +11,7 @@ export type DemoCase = {
 };
 
 export const mariaIntake: Intake = {
-  need: "Shelter tonight",
+  need: "Shelter",
   location: "Santa Clara, CA",
   requestName: "Maria",
   useCurrentLocation: false,
@@ -32,7 +32,7 @@ export const demoCases: DemoCase[] = [
   {
     id: "maria",
     name: "Maria",
-    needSummary: "Shelter tonight",
+    needSummary: "Shelter",
     constraints: "Dog, no ID, no car, Spanish preferred",
     recommendedId: "safestay-santa-clara",
     followUp: "Call before 8:30 PM",
@@ -71,7 +71,7 @@ export const demoCases: DemoCase[] = [
     recommendedId: "family-bridge-housing",
     followUp: "Call during business hours (9 AM to 5 PM)",
     intake: {
-      need: "Shelter tonight",
+      need: "Shelter",
       location: "Santa Clara, CA",
       requestName: "Elena",
       useCurrentLocation: false,
