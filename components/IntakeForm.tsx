@@ -23,11 +23,11 @@ const URGENCY_OPTIONS: { value: Urgency; label: string; sub: string }[] = [
   { value: "Planning ahead", label: "Planning ahead", sub: "Getting ready for later" },
 ];
 
-const TRANSPORT_OPTIONS: { value: Transportation }[] = [
-  { value: "Walking" },
-  { value: "Public transit" },
-  { value: "Car" },
-  { value: "Need transportation help" },
+const TRANSPORT_OPTIONS: { value: Transportation; label: string }[] = [
+  { value: "Walking", label: "Walking" },
+  { value: "Public transit", label: "Public transit" },
+  { value: "Car", label: "Car" },
+  { value: "Need transportation help", label: "I need a ride to get there" },
 ];
 
 type BooleanIntakeKey =
@@ -293,7 +293,7 @@ export default function IntakeForm() {
                 active={intake.transportation === t.value}
                 onClick={() => set("transportation", t.value)}
               >
-                <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.value}</span>
+                <span className="block text-lg font-semibold leading-tight sm:text-xl">{t.label}</span>
               </OptionButton>
             ))}
           </div>
